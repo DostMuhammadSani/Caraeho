@@ -1,0 +1,219 @@
+﻿@page "/branch"
+@rendermode InteractiveServer
+@using System.Collections.Generic
+@using System.Linq
+@using Blazored.SessionStorage
+@using System.Security.Claims
+@inject IHttpClientFactory HttpClientFactory
+@inject ISessionStorageService SessionStorage
+@inject UserService UserService
+
+@if (role == "Caraeho" || role=="Manager")
+{
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Branch Management</h2>
+
+            <!-- Data Table -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>BID</th>
+                        <th>BName</th>
+                        <th>BAddress</th>
+                        <th>City</th>
+                        <th>CID</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @if (branches.Any())
+                {
+                    @foreach (var branch in branches)
+                    {
+                                    <tr>
+                                        <td>@branch.BID</td>
+                                        <td>@branch.BName</td>
+                                        <td>@branch.BAddress</td>
+                                        <td>@branch.City</td>
+                                        <td>@branch.CID</td>
+                                        <td>
+                                            <button class="btn btn-warning btn-sm" @onclick="() => EditBranch(branch)">Update</button>
+                                @if (role == "Caraeho")
+                                {
+                                    <button class="btn btn-danger btn-sm" @onclick="() => DeleteBranch(branch.BID)">Delete</button>
+                                }
+                            </td>
+                                    </tr>
+                    }
+                }
+                else
+                {
+                            <tr>
+                                <td colspan="6" class="text-center">No branches found</td>
+                            </tr>
+                }
+                </tbody>
+            </table>
+
+            <!-- Add Branch Button -->
+        @if (role == "Caraeho")
+        {
+            <div class="mb-4">
+                <button class="btn btn-primary" @onclick="AddNewBranch">Add Branch</button>
+            </div>
+            }
+            <!-- Branch Form -->
+        @if (showForm)
+        {
+            @if (currentBranch.BID == null)
+            {
+                            <BranchForm currentBranch="currentBranch" OnSave="HandleSave" OnCancel="HandleCancel" />
+            }
+            else
+            {
+                            <UpdateBranchForm currentBranch="currentBranch" OnSave="HandleSave" OnCancel="HandleCancel" />
+            }
+        }
+        </div>
+}
+else
+{
+        <p>You do not have permission to view this page.</p>
+}
+
+@code {
+    private List<BranchModel>? branches = new List<BranchModel>();
+    private BranchModel currentBranch = new BranchModel();
+    private bool showForm = false;
+    private string role = "";
+    private string token = "";
+    public string Email { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                Email = UserService.Username;
+                token = await SessionStorage.GetItemAsync<string>("authToken");
+                var claims = RoleFetch.ParseClaimsFromJwt(token);
+                var roleClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+                role = roleClaim?.Value ?? "";
+                StateHasChanged();
+                if (role == "Caraeho")
+                {
+                    await LoadBranches();
+                    StateHasChanged();
+                }
+                if (role=="Manager")
+                {
+                    await LoadBranchesManager();
+                    StateHasChanged();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving token: {ex.Message}");
+            }
+        }
+    }
+
+    public  async Task LoadBranches()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var url = $"api/Person/ID?Email={Email}";
+        var response1 = await client.GetAsync(url);
+        if (response1.IsSuccessStatusCode)
+        {
+            var PID = await response1.Content.ReadAsStringAsync();
+
+            var response = await client.GetAsync($"api/Branch?PID={PID}");
+            if (response.IsSuccessStatusCode)
+            {
+                branches = await response.Content.ReadFromJsonAsync<List<BranchModel>>();
+            }
+        }
+    }
+
+    public async Task LoadBranchesManager()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+
+
+
+        var response = await client.GetAsync($"api/Branch/Manager?Email={Email}");
+        if (response.IsSuccessStatusCode)
+        {
+            branches = await response.Content.ReadFromJsonAsync<List<BranchModel>>();
+        }
+
+    }
+
+    private void AddNewBranch()
+    {
+        currentBranch = new BranchModel(); // Initialize a new Branch for adding
+        showForm = true;
+    }
+
+    private void EditBranch(BranchModel branch)
+    {
+        currentBranch = branch; // Use the selected branch for editing
+        showForm = true;
+    }
+
+    private async Task DeleteBranch(string bid)
+    {
+        List<EmailModel> emails = new List<EmailModel>();
+
+        var client = HttpClientFactory.CreateClient("AuthApi");
+     
+        var response1 = await client.GetAsync($"api/Manager/CompanyBranch?BID={bid}");
+
+        if (response1.IsSuccessStatusCode)
+        {
+            emails = await response1.Content.ReadFromJsonAsync<List<EmailModel>>();
+            foreach(var email in emails )
+            {
+                var response2 = await client.DeleteAsync($"api/Auth/delete?email={email.Email}");
+            }
+        }
+        var response = await client.DeleteAsync($"api/Branch?BID={bid}");
+        if (response.IsSuccessStatusCode)
+        {
+            var branchToRemove = branches.FirstOrDefault(b => b.BID == bid);
+            if (branchToRemove != null)
+            {
+                branches.Remove(branchToRemove);
+            }
+            await LoadBranches();
+            HandleCancel();
+            StateHasChanged();
+           
+        }
+        else
+        {
+            Console.WriteLine($"Failed to delete branch with BID {bid}. Status code: {response.StatusCode}");
+        }
+    }
+
+    private void HandleSave(BranchModel savedBranch)
+    {
+        if (branches.Any(b => b.BID == savedBranch.BID))
+        {
+            var index = branches.FindIndex(b => b.BID == savedBranch.BID);
+            branches[index] = savedBranch;
+        }
+        else
+        {
+            branches.Add(savedBranch);
+        }
+
+        showForm = false; // Hide the form after saving
+    }
+
+    private void HandleCancel()
+    {
+        showForm = false; // Hide the form without saving
+    }
+}

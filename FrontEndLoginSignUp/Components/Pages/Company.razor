@@ -1,0 +1,194 @@
+﻿@page "/company"
+@rendermode InteractiveServer
+@using System.Collections.Generic
+@using System.Linq
+@using Blazored.SessionStorage
+@using System.Security.Claims
+@using System.Text.Json
+@inject IHttpClientFactory HttpClientFactory
+@inject ISessionStorageService SessionStorage
+@inject UserService UserService
+
+@if (role == "Caraeho")
+{
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Company Management</h2>
+
+        <!-- Data Table -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>CID</th>
+                    <th>CName</th>
+                    <th>City</th>
+                    <th>PID</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (companies.Any())
+                {
+                    @foreach (var company in companies)
+                    {
+                        <tr>
+                            <td>@company.CID</td>
+                            <td>@company.CName</td>
+                            <td>@company.City</td>
+                            <td>@company.PID</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" @onclick="() => EditCompany(company)">Update</button>
+                                <button class="btn btn-danger btn-sm" @onclick="() => DeleteCompany(company.CID)">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center">No companies found</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Add Company Button -->
+        <div class="mb-4">
+            <button class="btn btn-primary" @onclick="AddNewCompany">Add Company</button>
+        </div>
+
+        <!-- Company Form -->
+        @if (showForm)
+        {
+            @if (currentCompany.CID == null)
+            {
+                <CompanyForm currentCompany="currentCompany" OnSave="HandleSave" OnCancel="HandleCancel" />
+            }
+            else
+            {
+                <UpdateCompanyForm currentCompany="currentCompany" OnSave="HandleSave" OnCancel="HandleCancel" />
+            }
+        }
+    </div>
+}
+else
+{
+    <p>You do not have permission to view this page.</p>
+}
+
+@code {
+    private List<CompanyModel>? companies = new List<CompanyModel>();
+    private CompanyModel currentCompany = new CompanyModel();
+    private bool showForm = false;
+    private string role = "";
+    private string token = "";
+    public string Email { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                Email = UserService.Username;
+                token = await SessionStorage.GetItemAsync<string>("authToken");
+                var claims = RoleFetch.ParseClaimsFromJwt(token);
+                var roleClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+                role = roleClaim?.Value ?? "";
+                StateHasChanged();
+                if (role == "Caraeho")
+                {
+                    await LoadCompanies();
+                    StateHasChanged();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving token: {ex.Message}");
+            }
+        }
+    }
+
+    private async Task LoadCompanies()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var url = $"api/Person/ID?Email={Email}";
+        var response1 = await client.GetAsync(url);
+        if (response1.IsSuccessStatusCode)
+        {
+            var PID = await response1.Content.ReadAsStringAsync();
+
+            var response = await client.GetAsync($"api/Company?PID={PID}");
+            if (response.IsSuccessStatusCode)
+            {
+                companies = await response.Content.ReadFromJsonAsync<List<CompanyModel>>();
+            }
+        }
+    }
+
+    private void AddNewCompany()
+    {
+        currentCompany = new CompanyModel(); // Initialize a new Company for adding
+        showForm = true;
+    }
+
+    private void EditCompany(CompanyModel company)
+    {
+        currentCompany = company; // Use the selected company for editing
+        showForm = true;
+    }
+    private async Task DeleteCompany(string cid)
+    {
+        List<EmailModel> emails = new List<EmailModel>();
+        var client = HttpClientFactory.CreateClient("AuthApi");
+
+       
+        // Fetch the emails of managers associated with the company
+        var response1 = await client.GetAsync($"api/Manager/CompanyMail?CID={cid}");
+
+        if (response1.IsSuccessStatusCode)
+        {
+            emails = await response1.Content.ReadFromJsonAsync<List<EmailModel>>();
+            foreach (var email in emails)
+            {
+                var response2 = await client.DeleteAsync($"api/Auth/delete?email={email.Email}");
+            }
+        }
+
+        var deleteResponse = await client.DeleteAsync($"api/Company?CID={cid}");
+
+        if (!deleteResponse.IsSuccessStatusCode)
+        {
+            Console.WriteLine($"Failed to delete company with CID {cid}. Status code: {deleteResponse.StatusCode}");
+            return;
+        }
+        // Remove the company from the list and refresh
+        var companyToRemove = companies.FirstOrDefault(c => c.CID == cid);
+        if (companyToRemove != null)
+        {
+            companies.Remove(companyToRemove);
+            await LoadCompanies();
+            HandleCancel();
+            StateHasChanged();
+        }
+    }
+
+    private void HandleSave(CompanyModel savedCompany)
+    {
+        if (companies.Any(c => c.CID == savedCompany.CID))
+        {
+            var index = companies.FindIndex(c => c.CID == savedCompany.CID);
+            companies[index] = savedCompany;
+        }
+        else
+        {
+            companies.Add(savedCompany);
+        }
+
+        showForm = false; // Hide the form after saving
+    }
+
+    private void HandleCancel()
+    {
+        showForm = false; // Hide the form without saving
+    }
+}

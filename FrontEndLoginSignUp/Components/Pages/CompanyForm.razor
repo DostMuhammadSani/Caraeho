@@ -1,0 +1,166 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using ClassLibraryModel
+@using DALLibrary
+@inject IHttpClientFactory HttpClientFactory
+@inject UserService UserService
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Add Company</h4>
+        <EditForm Model="currentCompany" OnValidSubmit="HandleSaveClick">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <!-- Error Message Display for Add Company -->
+            @if (!string.IsNullOrEmpty(ErrorMessageCompany))
+            {
+                    <div class="alert alert-danger">@ErrorMessageCompany</div>
+            }
+
+            <div class="form-group">
+                <label for="cname">Company Name</label>
+                <InputText id="cname" class="form-control" @bind-Value="currentCompany.CName" />
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <InputText id="city" class="form-control" @bind-Value="currentCompany.City" />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+
+    <div class="card-body">
+        <h4 class="card-title">Add Social Media Accounts</h4>
+        <EditForm Model="social" OnValidSubmit="HandleSocialClick">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <!-- Error Message Display for Add Social Media Accounts -->
+            @if (!string.IsNullOrEmpty(ErrorMessageSocial))
+            {
+                    <div class="alert alert-danger">@ErrorMessageSocial</div>
+            }
+
+            <div class="form-group">
+                <label for="web">Website</label>
+                <InputText id="web" class="form-control" @bind-Value="social.Website" />
+            </div>
+            <div class="form-group">
+                <label for="fb">Facebook</label>
+                <InputText id="fb" class="form-control" @bind-Value="social.Facebook" />
+            </div>
+             <div class="form-group">
+                <label for="is">Instagram</label>
+                <InputText id="is" class="form-control" @bind-Value="social.Instagram" />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+    @if (showAlert)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Data Stored!</strong> You can also add Social Media Details if you want.
+            <button type="button" class="btn-close" @onclick="CloseAlert"></button>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public CompanyModel currentCompany { get; set; }
+    [Parameter] public EventCallback<CompanyModel> OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+    public SocialModel social = new SocialModel();
+    public string Email { get; set; }
+    private string ErrorMessageCompany { get; set; } // To store error messages for Add Company
+    private string ErrorMessageSocial { get; set; } // To store error messages for Add Social Media Accounts
+    private bool showAlert = false;
+    protected override void OnInitialized()
+    {
+        Email = UserService.Username;
+        base.OnInitialized();
+    }
+
+    private async Task HandleSaveClick()
+    {
+        try
+        {
+            var client = HttpClientFactory.CreateClient("AuthApi");
+            var url = $"api/Person/ID?Email={Email}";
+            var response1 = await client.GetAsync(url);
+            if (response1.IsSuccessStatusCode)
+            {
+                currentCompany.PID = await response1.Content.ReadAsStringAsync();
+                Guid Id = Guid.NewGuid();
+                currentCompany.CID = Id.ToString();
+
+                var response = await client.PostAsJsonAsync("api/Company", currentCompany);
+                if (response.IsSuccessStatusCode)
+                {
+                    showAlert = true;
+                    StateHasChanged();
+                }
+                else
+                {
+                    // Capture API error response
+                    ErrorMessageCompany = await response.Content.ReadAsStringAsync();
+                }
+            }
+            else
+            {
+                // Capture API error response
+                ErrorMessageCompany = await response1.Content.ReadAsStringAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log and display the exception message
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            ErrorMessageCompany = "An unexpected error occurred. Please try again later.";
+        }
+    }
+
+    private async Task HandleSocialClick()
+    {
+        try
+        {
+            social.CID = currentCompany.CID;
+            var client = HttpClientFactory.CreateClient("AuthApi");
+
+            var response = await client.PostAsJsonAsync("api/Social", social);
+            if (response.IsSuccessStatusCode)
+            {
+                await OnSave.InvokeAsync(currentCompany);
+            }
+            else
+            {
+                // Capture API error response
+                ErrorMessageSocial = await response.Content.ReadAsStringAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log and display the exception message
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            ErrorMessageSocial = "An unexpected error occurred. Please try again later.";
+        }
+    }
+
+    private void Cancel()
+    {
+        OnCancel.InvokeAsync();
+    }
+
+    private void CloseAlert()
+    {
+        showAlert = false;
+    }
+
+}

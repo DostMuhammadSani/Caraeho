@@ -1,0 +1,85 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using ClassLibraryModel
+@using DALLibrary
+@inject IHttpClientFactory HttpClientFactory
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Update Manager</h4>
+        <EditForm Model="currentManager" OnValidSubmit="HandleUpdateClick">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <!-- Error Message Display for Update Manager -->
+            @if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                    <div class="alert alert-danger">@ErrorMessage</div>
+            }
+
+            <div class="form-group">
+                <label for="mid">Manager ID (MID)</label>
+                <InputText id="mid" class="form-control" @bind-Value="currentManager.MID" disabled />
+            </div>
+            <div class="form-group">
+                <label for="mname">Manager Name</label>
+                <InputText id="mname" class="form-control" @bind-Value="currentManager.MName" required />
+            </div>
+
+            <div class="form-group">
+                <label for="contact">Contact</label>
+                <InputText id="contact" class="form-control" @bind-Value="currentManager.Contact" required />
+            </div>
+            <div class="form-group">
+                <label for="branch">Branch ID</label>
+                <InputText id="branch" class="form-control" @bind-Value="currentManager.BID" />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter] public ManagerModel currentManager { get; set; }
+    [Parameter] public EventCallback<ManagerModel> OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+    private string ErrorMessage { get; set; } // To store error messages
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    private async Task HandleUpdateClick()
+    {
+        try
+        {
+            var client = HttpClientFactory.CreateClient("AuthApi");
+            var response = await client.PutAsJsonAsync("api/Manager", currentManager);
+
+            if (response.IsSuccessStatusCode)
+            {
+                await OnSave.InvokeAsync(currentManager);
+            }
+            else
+            {
+                // Capture API error response
+                ErrorMessage = await response.Content.ReadAsStringAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log and display the exception message
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            ErrorMessage = "An unexpected error occurred. Please try again later.";
+        }
+    }
+
+    private void Cancel()
+    {
+        OnCancel.InvokeAsync();
+    }
+}

@@ -1,0 +1,156 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using ClassLibraryModel
+@using DALLibrary
+@inject IHttpClientFactory HttpClientFactory
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Update Company</h4>
+        <EditForm Model="currentCompany" OnValidSubmit="HandleUpdateClick">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="cid">CID</label>
+                <InputText id="cid" class="form-control" @bind-Value="currentCompany.CID" disabled />
+            </div>
+            <div class="form-group">
+                <label for="cname">CName</label>
+                <InputText id="cname" class="form-control" @bind-Value="currentCompany.CName" required />
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <InputText id="city" class="form-control" @bind-Value="currentCompany.City" required />
+            </div>
+            <div class="form-group">
+                <label for="pid">PID</label>
+                <InputText id="pid" class="form-control" @bind-Value="currentCompany.PID" disabled />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm>
+        @if (showAlert)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Data Stored!</strong> You can also add Social Media Details if you want.
+                <button type="button" class="btn-close" @onclick="CloseAlert"></button>
+            </div>
+        }
+       
+
+        @if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+                <div class="alert alert-danger mt-3">
+                @ErrorMessage
+                </div>
+        }
+
+    </div>
+</div>
+
+ <div class="card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Update Social Media</h4>
+        <EditForm Model="socialModel" OnValidSubmit="HandleUpdateSocial">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+           
+            <div class="form-group">
+                <label for="web">Website</label>
+                <InputText id="web" class="form-control" @bind-Value="socialModel.Website" required />
+            </div>
+            <div class="form-group">
+                <label for="fb">Facebook</label>
+                <InputText id="fb" class="form-control" @bind-Value="socialModel.Facebook" required />
+            </div>
+            <div class="form-group">
+                <label for="is">Instagram</label>
+                <InputText id="is" class="form-control" @bind-Value="socialModel.Instagram" required />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm> 
+        @if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+                    <div class="alert alert-danger mt-3">
+                @ErrorMessage
+                    </div>
+        }
+</div>
+</div>
+
+@code {
+    [Parameter] public CompanyModel currentCompany { get; set; }
+    [Parameter] public EventCallback<CompanyModel> OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+    public SocialModel socialModel = new SocialModel();
+    public string ErrorMessage { get; set; }
+    public string SuccessMessage { get; set; }
+    private bool showAlert = false;
+    private async Task HandleUpdateClick()
+    {
+        ErrorMessage = string.Empty;
+        SuccessMessage = string.Empty;
+
+        try
+        {
+            var client = HttpClientFactory.CreateClient("AuthApi");
+            var response = await client.PutAsJsonAsync("api/Company", currentCompany);
+
+            if (response.IsSuccessStatusCode)
+            {
+                SuccessMessage = "Company updated successfully.";
+                showAlert = true;
+
+            }
+            else
+            {
+                ErrorMessage = "Failed to update the company. Please try again.";
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+    private async Task HandleUpdateSocial()
+    {
+        ErrorMessage = string.Empty;
+        SuccessMessage = string.Empty;
+
+        try
+        {
+            socialModel.CID = currentCompany.CID;
+            var client = HttpClientFactory.CreateClient("AuthApi");
+            var response = await client.PutAsJsonAsync("api/Social", socialModel);
+
+            if (response.IsSuccessStatusCode)
+            {
+                SuccessMessage = "Company updated successfully.";
+                await OnSave.InvokeAsync(currentCompany);
+            }
+            else
+            {
+                ErrorMessage = "Failed to update the company. Please try again.";
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+
+    private void Cancel()
+    {
+        OnCancel.InvokeAsync();
+    }
+    private void CloseAlert()
+    {
+        showAlert = false;
+    }
+}

@@ -1,0 +1,182 @@
+﻿@page "/manager"
+@rendermode InteractiveServer
+@using System.Collections.Generic
+@using System.Linq
+@using Blazored.SessionStorage
+@using System.Security.Claims
+@inject IHttpClientFactory HttpClientFactory
+@inject ISessionStorageService SessionStorage
+@inject UserService UserService
+
+@if (role == "Caraeho")
+{
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Manager Management</h2>
+
+        <!-- Data Table -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>MID</th>
+                    <th>MName</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>BID</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if (managers.Any())
+            {
+                @foreach (var manager in managers)
+                {
+                    <tr>
+                        <td>@manager.MID</td>
+                        <td>@manager.MName</td>
+                        <td>@manager.Email</td>
+                        <td>@manager.Contact</td>
+                        <td>@manager.BID</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" @onclick="() => EditManager(manager)">Update</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteManager(manager.MID,manager.Email)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">No managers found</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        <!-- Add Manager Button -->
+        <div class="mb-4">
+            <button class="btn btn-primary" @onclick="AddNewManager">Add Manager</button>
+        </div>
+
+        <!-- Manager Form -->
+        @if (showForm)
+        {
+            @if (currentManager.MID == null)
+            {
+                <ManagerForm currentManager="currentManager" OnSave="HandleSave" OnCancel="HandleCancel" />
+            }
+            else
+            {
+                <UpdateManagerForm currentManager="currentManager" OnSave="HandleSave" OnCancel="HandleCancel" />
+            }
+        }
+    </div>
+}
+else
+{
+    <p>You do not have permission to view this page.</p>
+}
+
+@code {
+    private List<ManagerModel>? managers = new List<ManagerModel>();
+    private ManagerModel currentManager = new ManagerModel();
+    private bool showForm = false;
+    private string role = "";
+    private string token = "";
+    public string Email { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                Email = UserService.Username;
+                token = await SessionStorage.GetItemAsync<string>("authToken");
+                var claims = RoleFetch.ParseClaimsFromJwt(token);
+                var roleClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+                role = roleClaim?.Value ?? "";
+                StateHasChanged();
+                if (role == "Caraeho")
+                {
+                    await LoadManagers();
+                    StateHasChanged();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving token: {ex.Message}");
+            }
+        }
+    }
+
+    private async Task LoadManagers()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var url = $"api/Person/ID?Email={Email}";
+        var response1 = await client.GetAsync(url);
+        if (response1.IsSuccessStatusCode)
+        {
+            var PID = await response1.Content.ReadAsStringAsync();
+
+            var response = await client.GetAsync($"api/Manager?PID={PID}");
+            if (response.IsSuccessStatusCode)
+            {
+                managers = await response.Content.ReadFromJsonAsync<List<ManagerModel>>();
+            }
+        }
+    }
+
+    private void AddNewManager()
+    {
+        currentManager = new ManagerModel(); // Initialize a new Manager for adding
+        showForm = true;
+    }
+
+    private void EditManager(ManagerModel manager)
+    {
+        currentManager = manager; // Use the selected manager for editing
+        showForm = true;
+    }
+
+    private async Task DeleteManager(string mid,string email)
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var response = await client.DeleteAsync($"api/Manager?MID={mid}");
+        var response1 = await client.DeleteAsync($"api/Auth/delete?email={email}");
+        if (response.IsSuccessStatusCode && response1.IsSuccessStatusCode)
+        {
+            var managerToRemove = managers.FirstOrDefault(m => m.MID == mid);
+            if (managerToRemove != null)
+            {
+                managers.Remove(managerToRemove);
+            }
+            await LoadManagers();
+            HandleCancel();
+            StateHasChanged();
+        }
+        else
+        {
+            Console.WriteLine($"Failed to delete manager with MID {mid}. Status code: {response.StatusCode}+{response1.StatusCode}");
+        }
+    }
+
+    private void HandleSave(ManagerModel savedManager)
+    {
+        if (managers.Any(m => m.MID == savedManager.MID))
+        {
+            var index = managers.FindIndex(m => m.MID == savedManager.MID);
+            managers[index] = savedManager;
+        }
+        else
+        {
+            managers.Add(savedManager);
+        }
+
+        showForm = false; // Hide the form after saving
+    }
+
+    private void HandleCancel()
+    {
+        showForm = false; // Hide the form without saving
+    }
+}

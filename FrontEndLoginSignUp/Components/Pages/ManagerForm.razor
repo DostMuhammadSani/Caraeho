@@ -1,0 +1,159 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using ClassLibraryModel
+@using DALLibrary
+@inject IHttpClientFactory HttpClientFactory
+@inject UserService UserService
+@rendermode InteractiveServer
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Add Manager</h4>
+        <EditForm Model="currentManager" OnValidSubmit="HandleSaveClick">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="mname">Manager Name</label>
+                <InputText id="mname" class="form-control" @bind-Value="currentManager.MName" />
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <InputText id="email" type="email" class="form-control" @bind-Value="currentManager.Email" required />
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact</label>
+                <InputText id="contact" class="form-control" @bind-Value="currentManager.Contact" />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <InputText id="password" type="password"  class="form-control" @bind-Value="register.Password" />
+            </div>
+            <div class="form-group">
+                <label for="branch">Branch</label>
+                <select id="branch" class="form-control" @bind="currentManager.BID">
+                    <option value="">Select a branch</option>
+                    @foreach (var branch in Branches)
+                    {
+                            <option value="@branch.BID">@($"{branch.BName} - {branch.BAddress}")</option>
+                    }
+                </select>
+            </div>
+
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                    <div class="alert alert-danger">@errorMessage</div>
+            }
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter] public ManagerModel currentManager { get; set; }
+    [Parameter] public EventCallback<ManagerModel> OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+
+    public RegisterModel register = new RegisterModel();
+    private string selectedRole = "Manager";
+
+    public List<BranchModel> Branches = new List<BranchModel>();
+    public string Email;
+    private string? errorMessage;
+
+    protected override async void OnInitialized()
+    {
+        Email = UserService.Username;
+        await LoadBranches();
+        StateHasChanged();
+        base.OnInitialized();
+    }
+
+    private async Task HandleSaveClick()
+    {
+        try
+        {
+            errorMessage = null; // Clear any previous error messages
+            Guid Id = Guid.NewGuid();
+            currentManager.MID = Id.ToString();
+   
+            register.Email = currentManager.Email;
+            
+            var client = HttpClientFactory.CreateClient("AuthApi");
+            var response2 = await client.PostAsJsonAsync("api/Auth/register", new { register, selectedRole });
+
+            if (!response2.IsSuccessStatusCode)
+            {
+                errorMessage = await GetErrorMessageAsync(response2);
+                return;
+            }
+
+         
+            
+       
+
+           
+
+            var response = await client.PostAsJsonAsync("api/Manager", currentManager);
+            if (response.IsSuccessStatusCode)
+            {
+                await OnSave.InvokeAsync(currentManager);
+            }
+            else
+            {
+                errorMessage = await GetErrorMessageAsync(response);
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+
+    private void Cancel()
+    {
+        OnCancel.InvokeAsync();
+    }
+
+    public async Task LoadBranches()
+    {
+        try
+        {
+            var client = HttpClientFactory.CreateClient("AuthApi");
+            var url = $"api/Person/ID?Email={Email}";
+            var response1 = await client.GetAsync(url);
+
+            if (!response1.IsSuccessStatusCode)
+            {
+                errorMessage = await GetErrorMessageAsync(response1);
+                return;
+            }
+
+            var PID = await response1.Content.ReadAsStringAsync();
+
+            var response = await client.GetAsync($"api/Branch?PID={PID}");
+            if (response.IsSuccessStatusCode)
+            {
+                Branches = await response.Content.ReadFromJsonAsync<List<BranchModel>>();
+            }
+            else
+            {
+                errorMessage = await GetErrorMessageAsync(response);
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred while loading branches: {ex.Message}";
+        }
+    }
+
+    private async Task<string> GetErrorMessageAsync(HttpResponseMessage response)
+    {
+        var errorContent = await response.Content.ReadAsStringAsync();
+        return !string.IsNullOrEmpty(errorContent) ? errorContent : response.ReasonPhrase;
+    }
+}

@@ -1,0 +1,93 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using ClassLibraryModel
+@using DALLibrary
+@inject IHttpClientFactory HttpClientFactory
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Update Branch</h4>
+        <EditForm Model="currentBranch" OnValidSubmit="HandleUpdateClick">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="bid">Branch ID (BID)</label>
+                <InputText id="bid" class="form-control" @bind-Value="currentBranch.BID" disabled />
+            </div>
+            <div class="form-group">
+                <label for="bname">Branch Name (BName)</label>
+                <InputText id="bname" class="form-control" @bind-Value="currentBranch.BName" required />
+            </div>
+            <div class="form-group">
+                <label for="baddress">Branch Address (BAddress)</label>
+                <InputText id="baddress" class="form-control" @bind-Value="currentBranch.BAddress" required />
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <InputText id="city" class="form-control" @bind-Value="currentBranch.City" required />
+            </div>
+            <div class="form-group">
+                <label for="cid">Company ID (CID)</label>
+                <InputText id="cid" class="form-control" @bind-Value="currentBranch.CID" disabled />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm>
+
+        @if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+                <div class="alert alert-danger mt-3">
+                @ErrorMessage
+                </div>
+        }
+        @if (!string.IsNullOrEmpty(SuccessMessage))
+        {
+                <div class="alert alert-success mt-3">
+                @SuccessMessage
+                </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public BranchModel currentBranch { get; set; }
+    [Parameter] public EventCallback<BranchModel> OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+
+    public string ErrorMessage { get; set; }
+    public string SuccessMessage { get; set; }
+
+    private async Task HandleUpdateClick()
+    {
+        ErrorMessage = string.Empty;
+        SuccessMessage = string.Empty;
+
+        try
+        {
+            var client = HttpClientFactory.CreateClient("AuthApi");
+            var response = await client.PutAsJsonAsync("api/Branch", currentBranch);
+
+            if (response.IsSuccessStatusCode)
+            {
+                SuccessMessage = "Branch updated successfully.";
+                await OnSave.InvokeAsync(currentBranch);
+            }
+            else
+            {
+                ErrorMessage = "Failed to update the branch. Please try again.";
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+
+    private void Cancel()
+    {
+        OnCancel.InvokeAsync();
+    }
+}

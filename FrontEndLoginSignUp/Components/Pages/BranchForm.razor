@@ -1,0 +1,127 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using ClassLibraryModel
+@using DALLibrary
+@inject IHttpClientFactory HttpClientFactory
+@inject UserService UserService
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Add Branch</h4>
+        <EditForm Model="currentBranch" OnValidSubmit="HandleSaveClick">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <!-- Error Message Display -->
+            @if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                    <div class="alert alert-danger">@ErrorMessage</div>
+            }
+
+            <div class="form-group">
+                <label for="bname">Branch Name</label>
+                <InputText id="bname" class="form-control" @bind-Value="currentBranch.BName" />
+            </div>
+            <div class="form-group">
+                <label for="baddress">Branch Address</label>
+                <InputText id="baddress" class="form-control" @bind-Value="currentBranch.BAddress" />
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <InputText id="city" class="form-control" @bind-Value="currentBranch.City" />
+            </div>
+
+         
+             <div class="form-group">
+                <label for="cname">Company</label>
+                <select id="cname" class="form-control" @bind="CName">
+                    <option value="">Select a branch</option>
+                    @foreach (var comp in companies)
+                    {
+                                        <option value="@CName">@($"{comp.CName}")</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter] public BranchModel currentBranch { get; set; }
+    [Parameter] public EventCallback<BranchModel> OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+    List<CompanyModel> companies = new List<CompanyModel>();
+    public string CName { get; set; }
+    private string ErrorMessage { get; set; } // To store error messages
+    public string Email;
+    protected override async void OnInitialized()
+    {
+        Email = UserService.Username;
+       
+        await LoadCompanies();
+        StateHasChanged();
+        base.OnInitialized();
+    }
+    private async Task LoadCompanies()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var url = $"api/Person/ID?Email={Email}";
+        var response1 = await client.GetAsync(url);
+        if (response1.IsSuccessStatusCode)
+        {
+            var PID = await response1.Content.ReadAsStringAsync();
+
+            var response = await client.GetAsync($"api/Company?PID={PID}");
+            if (response.IsSuccessStatusCode)
+            {
+                companies = await response.Content.ReadFromJsonAsync<List<CompanyModel>>();
+            }
+        }
+    }
+    private async Task HandleSaveClick()
+    {
+        try
+        {
+            var client = HttpClientFactory.CreateClient("AuthApi");
+            var url = $"api/Company/CID?CName={CName}";
+            var response1 = await client.GetAsync(url);
+
+            if (response1.IsSuccessStatusCode)
+            {
+                currentBranch.CID = await response1.Content.ReadAsStringAsync();
+                Guid Id = Guid.NewGuid();
+                currentBranch.BID = Id.ToString();
+
+                var response = await client.PostAsJsonAsync("api/Branch", currentBranch);
+                if (response.IsSuccessStatusCode)
+                {
+                    await OnSave.InvokeAsync(currentBranch);
+                }
+                else
+                {
+                    // Capture API error response
+                    ErrorMessage = await response.Content.ReadAsStringAsync();
+                }
+            }
+            else
+            {
+                // Capture API error response
+                ErrorMessage = await response1.Content.ReadAsStringAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log and display the exception message
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            ErrorMessage = "An unexpected error occurred. Please try again later.";
+        }
+    }
+
+    private void Cancel()
+    {
+        OnCancel.InvokeAsync();
+    }
+}
