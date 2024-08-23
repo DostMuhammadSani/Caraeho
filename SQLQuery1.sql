@@ -219,6 +219,6 @@ Select * from [dbo].[AspNetUsers]
 
 Select * from Manager;
 
-Delete from [dbo].[AspNetUsers] where Email='Shayan123@gmail.com'
+Delete from [dbo].[AspNetUsers] where Email!='dostmuhammadsani@gmail.com'
 
 

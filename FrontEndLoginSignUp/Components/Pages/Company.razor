@@ -106,6 +106,7 @@ else
                 Console.WriteLine($"Error retrieving token: {ex.Message}");
             }
         }
+
     }
 
     private async Task LoadCompanies()
@@ -141,7 +142,7 @@ else
         List<EmailModel> emails = new List<EmailModel>();
         var client = HttpClientFactory.CreateClient("AuthApi");
 
-       
+
         // Fetch the emails of managers associated with the company
         var response1 = await client.GetAsync($"api/Manager/CompanyMail?CID={cid}");
 
@@ -187,8 +188,10 @@ else
         showForm = false; // Hide the form after saving
     }
 
-    private void HandleCancel()
+    private async void HandleCancel()
     {
-        showForm = false; // Hide the form without saving
+        showForm = false;
+        await LoadCompanies();
+        StateHasChanged();// Hide the form without saving
     }
 }
