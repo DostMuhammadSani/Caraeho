@@ -1,0 +1,191 @@
+﻿@page "/item/{Cat_ID}"
+@rendermode InteractiveServer
+@using System.Collections.Generic
+@using System.Linq
+@using Blazored.SessionStorage
+@using System.Security.Claims
+@using ClassLibraryModel.ClassLibraryModel
+@inject IHttpClientFactory HttpClientFactory
+@inject ISessionStorageService SessionStorage
+@inject UserService UserService
+@inject NavigationManager Navigation
+
+@if (role == "Caraeho" || role == "Manager")
+{
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Menu Management</h2>
+
+        <!-- Data Table -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Menu_ID</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Serving</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if (menuItems.Any())
+            {
+                @foreach (var menu in menuItems)
+                {
+                    <tr>
+                        <td>@menu.Menu_ID</td>
+                        <td>@menu.Item</td>
+                        <td>@menu.Quantity</td>
+                        <td>@menu.Serving</td>
+                        <td>@menu.Price</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" @onclick="() => EditMenu(menu)">Update</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteMenu(menu.Menu_ID)">Delete</button>
+                                         <button class="btn btn-warning btn-sm" @onclick="() => AddIngredients(menu.Menu_ID)">Ingredients</button>
+                                        <button class="btn btn-danger btn-sm" @onclick="() => AddNutritions(menu.Menu_ID)">Nutritions</button>
+
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">No menu items found</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        <!-- Add Menu Button -->
+        <div class="mb-4">
+            <button class="btn btn-primary" @onclick="AddNewMenu">Add Menu Item</button>
+        </div>
+
+        <!-- Menu Form -->
+        @if (showForm)
+        {
+            @if (currentMenu.Menu_ID == null)
+            {
+                            <ItemForm currentMenu="currentMenu" OnSave="HandleSave"  OnCancel="HandleCancel"  />
+            }
+            else
+            {
+                <UpdateItemForm currentMenu="currentMenu" OnSave="HandleSave" OnCancel="HandleCancel" />
+            }
+        }
+    </div>
+}
+else
+{
+    <p>You do not have permission to view this page.</p>
+}
+
+@code {
+    [Parameter]
+    public string Cat_ID { get; set; }
+
+    private List<MenuModel>? menuItems = new List<MenuModel>();
+    private MenuModel currentMenu = new MenuModel();
+    private bool showForm = false;
+    private string role = "";
+    private string token = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                var email = UserService.Username;
+                token = await SessionStorage.GetItemAsync<string>("authToken");
+                var claims = RoleFetch.ParseClaimsFromJwt(token);
+                var roleClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+                role = roleClaim?.Value ?? "";
+                StateHasChanged();
+                if (role == "Caraeho" || role == "Manager")
+                {
+                    await LoadMenuItems();
+                    StateHasChanged();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving token: {ex.Message}");
+            }
+        }
+    }
+
+    private async Task LoadMenuItems()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var response = await client.GetAsync($"api/Menu/{Cat_ID}");
+        if (response.IsSuccessStatusCode)
+        {
+            menuItems = await response.Content.ReadFromJsonAsync<List<MenuModel>>();
+        }
+    }
+
+    private void AddNewMenu()
+    {
+        currentMenu = new MenuModel(); // Initialize a new Menu item for adding
+        currentMenu.Cat_ID = Cat_ID; // Set the Cat_ID to the current category
+        showForm = true;
+    }
+
+    private void EditMenu(MenuModel menu)
+    {
+        currentMenu = menu; // Use the selected menu item for editing
+        showForm = true;
+    }
+
+    private void AddIngredients(string Menu_ID)
+    {
+        Navigation.NavigateTo($"/ingredient/{Menu_ID}");
+    }
+    private void AddNutritions(string Menu_ID)
+    {
+        Navigation.NavigateTo($"/nutrition/{Menu_ID}");
+    }
+
+    private async Task DeleteMenu(string menuId)
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var response = await client.DeleteAsync($"api/Menu/{menuId}");
+        if (response.IsSuccessStatusCode)
+        {
+            var menuToRemove = menuItems.FirstOrDefault(m => m.Menu_ID == menuId);
+            if (menuToRemove != null)
+            {
+                menuItems.Remove(menuToRemove);
+            }
+            await LoadMenuItems();
+            HandleCancel();
+            StateHasChanged();
+        }
+        else
+        {
+            Console.WriteLine($"Failed to delete menu item with Menu_ID {menuId}. Status code: {response.StatusCode}");
+        }
+    }
+
+    private void HandleSave(MenuModel savedMenu)
+    {
+        if (menuItems.Any(m => m.Menu_ID == savedMenu.Menu_ID))
+        {
+            var index = menuItems.FindIndex(m => m.Menu_ID == savedMenu.Menu_ID);
+            menuItems[index] = savedMenu;
+        }
+        else
+        {
+            menuItems.Add(savedMenu);
+        }
+
+        showForm = false; // Hide the form after saving
+    }
+
+    private void HandleCancel()
+    {
+        showForm = false; // Hide the form without saving
+    }
+}

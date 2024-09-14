@@ -1,0 +1,88 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using ClassLibraryModel
+@using ClassLibraryModel.ClassLibraryModel
+@inject IHttpClientFactory HttpClientFactory
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Update Ingredient</h4>
+        <EditForm Model="currentIngredient" OnValidSubmit="HandleUpdateClick">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <!-- Error Message Display for Update Ingredient -->
+            @if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                    <div class="alert alert-danger">@ErrorMessage</div>
+            }
+
+            <div class="form-group">
+                <label for="ingredientId">Ingredient ID (IID)</label>
+                <InputText id="ingredientId" class="form-control" @bind-Value="currentIngredient.IID" disabled />
+            </div>
+
+            <div class="form-group">
+                <label for="title">Title</label>
+                <InputText id="title" class="form-control" @bind-Value="currentIngredient.Title" required />
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <InputText id="amount" class="form-control" @bind-Value="currentIngredient.Ammount" required />
+            </div>
+
+            <div class="form-group">
+                <label for="menuId">Menu ID (Menu_ID)</label>
+                <InputText id="menuId" class="form-control" @bind-Value="currentIngredient.Menu_ID" disabled />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter] public IngredientModel currentIngredient { get; set; }
+    [Parameter] public EventCallback<IngredientModel> OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+
+    private string ErrorMessage { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    private async Task HandleUpdateClick()
+    {
+        try
+        {
+            var client = HttpClientFactory.CreateClient("AuthApi");
+            var response = await client.PutAsJsonAsync("api/Ingredient", currentIngredient);
+
+            if (response.IsSuccessStatusCode)
+            {
+                await OnSave.InvokeAsync(currentIngredient);
+            }
+            else
+            {
+                // Capture API error response
+                ErrorMessage = await response.Content.ReadAsStringAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log and display the exception message
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            ErrorMessage = "An unexpected error occurred. Please try again later.";
+        }
+    }
+
+    private void Cancel()
+    {
+        OnCancel.InvokeAsync();
+    }
+}

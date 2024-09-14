@@ -1,0 +1,82 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using ClassLibraryModel
+@inject IHttpClientFactory HttpClientFactory
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Update Category</h4>
+        <EditForm Model="currentCategory" OnValidSubmit="HandleUpdateClick">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <!-- Error Message Display for Update Category -->
+            @if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                    <div class="alert alert-danger">@ErrorMessage</div>
+            }
+
+            <div class="form-group">
+                <label for="catId">Category ID (Cat_ID)</label>
+                <InputText id="catId" class="form-control" @bind-Value="currentCategory.Cat_ID" disabled />
+            </div>
+
+            <div class="form-group">
+                <label for="title">Category Title</label>
+                <InputText id="title" class="form-control" @bind-Value="currentCategory.Title" required />
+            </div>
+
+            <div class="form-group">
+                <label for="branch">Branch ID (BID)</label>
+                <InputText id="branch" class="form-control" @bind-Value="currentCategory.BID" disabled />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter] public CategoryModel currentCategory { get; set; }
+    [Parameter] public EventCallback<CategoryModel> OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+
+    private string ErrorMessage { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    private async Task HandleUpdateClick()
+    {
+        try
+        {
+            var client = HttpClientFactory.CreateClient("AuthApi");
+            var response = await client.PutAsJsonAsync("api/Category", currentCategory);
+
+            if (response.IsSuccessStatusCode)
+            {
+                await OnSave.InvokeAsync(currentCategory);
+            }
+            else
+            {
+                // Capture API error response
+                ErrorMessage = await response.Content.ReadAsStringAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log and display the exception message
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            ErrorMessage = "An unexpected error occurred. Please try again later.";
+        }
+    }
+
+    private void Cancel()
+    {
+        OnCancel.InvokeAsync();
+    }
+}

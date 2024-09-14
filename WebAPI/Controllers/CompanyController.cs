@@ -33,7 +33,8 @@ namespace WebAPI.Controllers
             new SqlParameter ("@CID",company.CID),
             new SqlParameter ("@CName",company.CName),
             new SqlParameter ("@City",company.City),
-            new SqlParameter ("@PID",company.PID)
+            new SqlParameter ("@PID",company.PID),
+            new SqlParameter ("@CType",company.CType)
             };
             DALClass.CUD(sp, "SaveCompany");
         }
@@ -45,7 +46,8 @@ namespace WebAPI.Controllers
             new SqlParameter ("@CID",company.CID),
             new SqlParameter ("@CName",company.CName),
             new SqlParameter ("@City",company.City),
-           
+              new SqlParameter ("@CType",company.CType)
+
             };
             DALClass.CUD(sp, "UpdateCompany");
         }

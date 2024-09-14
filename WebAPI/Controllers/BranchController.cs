@@ -40,7 +40,8 @@ namespace WebAPI.Controllers
                 new SqlParameter("@BName", branch.BName),
                 new SqlParameter("@BAddress", branch.BAddress),
                 new SqlParameter("@City", branch.City),
-                new SqlParameter("@CID", branch.CID)
+                new SqlParameter("@CID", branch.CID),
+                new SqlParameter("@Area",branch.Area)
             };
             DALClass.CUD(sp, "SaveBranch");
         }
@@ -52,7 +53,8 @@ namespace WebAPI.Controllers
                 new SqlParameter("@BID", branch.BID),
                 new SqlParameter("@BName", branch.BName),
                 new SqlParameter("@BAddress", branch.BAddress),
-                new SqlParameter("@City", branch.City)
+                new SqlParameter("@City", branch.City),
+                new SqlParameter("@Area",branch.Area)
             };
             DALClass.CUD(sp, "UpdateBranch");
         }

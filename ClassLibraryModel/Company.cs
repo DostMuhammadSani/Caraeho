@@ -12,5 +12,7 @@ namespace ClassLibraryModel
         public string CName { get; set; }
         public string City { get; set; }
         public string PID { get; set; }
+
+        public string CType { get; set; }
     }
 }

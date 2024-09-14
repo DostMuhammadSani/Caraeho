@@ -1,0 +1,183 @@
+﻿@page "/category/{BID}"
+@rendermode InteractiveServer
+@using System.Collections.Generic
+@using System.Linq
+@using Blazored.SessionStorage
+@using System.Security.Claims
+@inject IHttpClientFactory HttpClientFactory
+@inject ISessionStorageService SessionStorage
+@inject UserService UserService
+@inject NavigationManager Navigation
+
+
+@if (role == "Caraeho" || role=="Manager")
+{
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Category Management</h2>
+
+        <!-- Data Table -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Cat_ID</th>
+                    <th>Title</th>
+                    <th>BID</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if (categories.Any())
+            {
+                @foreach (var category in categories)
+                {
+                    <tr>
+                        <td>@category.Cat_ID</td>
+                        <td>@category.Title</td>
+                        <td>@category.BID</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" @onclick="() => EditCategory(category)">Update</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteCategory(category.Cat_ID)">Delete</button>
+                                        <button class="btn btn-danger btn-sm" @onclick="() => AddItems(category.Cat_ID)">Items</button>
+
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">No categories found</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        <!-- Add Category Button -->
+        <div class="mb-4">
+            <button class="btn btn-primary" @onclick="AddNewCategory">Add Category</button>
+        </div>
+
+        <!-- Category Form -->
+        @if (showForm)
+        {
+            @if (currentCategory.Cat_ID == null)
+            {
+               
+                <CategoryForm currentCategory="currentCategory" OnSave="HandleSave" OnCancel="HandleCancel" />
+            }
+            else
+            {
+                <UpdateCategoryForm currentCategory="currentCategory" OnSave="HandleSave" OnCancel="HandleCancel" />
+            }
+        }
+    </div>
+}
+else
+{
+    <p>You do not have permission to view this page.</p>
+}
+
+@code {
+    [Parameter]
+    public string BID { get; set; }
+
+    private List<CategoryModel>? categories = new List<CategoryModel>();
+    private CategoryModel currentCategory = new CategoryModel();
+    private bool showForm = false;
+    private string role = "";
+    private string token = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                var email = UserService.Username;
+                token = await SessionStorage.GetItemAsync<string>("authToken");
+                var claims = RoleFetch.ParseClaimsFromJwt(token);
+                var roleClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+                role = roleClaim?.Value ?? "";
+                StateHasChanged();
+                if (role == "Caraeho" || role=="Manager")
+                {
+                    await LoadCategories();
+                    StateHasChanged();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving token: {ex.Message}");
+            }
+        }
+    }
+
+    private async Task LoadCategories()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var response = await client.GetAsync($"api/Category/{BID}");
+        if (response.IsSuccessStatusCode)
+        {
+            categories = await response.Content.ReadFromJsonAsync<List<CategoryModel>>();
+        }
+    }
+
+    private void AddNewCategory()
+    {
+        currentCategory = new CategoryModel(); // Initialize a new Category for adding
+        currentCategory.BID = BID; // Set the BID to the current branch
+        showForm = true;
+    }
+
+    private void AddItems(string Cat_ID)
+    {
+        Navigation.NavigateTo($"/item/{Cat_ID}");
+    }
+
+    private void EditCategory(CategoryModel category)
+    {
+        currentCategory = category; // Use the selected category for editing
+        showForm = true;
+    }
+
+    private async Task DeleteCategory(string catId)
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var response = await client.DeleteAsync($"api/Category/{catId}");
+        if (response.IsSuccessStatusCode)
+        {
+            var categoryToRemove = categories.FirstOrDefault(c => c.Cat_ID == catId);
+            if (categoryToRemove != null)
+            {
+                categories.Remove(categoryToRemove);
+            }
+            await LoadCategories();
+            HandleCancel();
+            StateHasChanged();
+        }
+        else
+        {
+            Console.WriteLine($"Failed to delete category with Cat_ID {catId}. Status code: {response.StatusCode}");
+        }
+    }
+
+    private void HandleSave(CategoryModel savedCategory)
+    {
+        if (categories.Any(c => c.Cat_ID == savedCategory.Cat_ID))
+        {
+            var index = categories.FindIndex(c => c.Cat_ID == savedCategory.Cat_ID);
+            categories[index] = savedCategory;
+        }
+        else
+        {
+            categories.Add(savedCategory);
+        }
+
+        showForm = false; // Hide the form after saving
+    }
+
+    private void HandleCancel()
+    {
+        showForm = false; // Hide the form without saving
+    }
+}

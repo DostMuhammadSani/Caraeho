@@ -1,0 +1,174 @@
+﻿@page "/nutrition/{Menu_ID}"
+@rendermode InteractiveServer
+@using System.Collections.Generic
+@using System.Linq
+@using Blazored.SessionStorage
+@using System.Security.Claims
+@using ClassLibraryModel.ClassLibraryModel
+@inject IHttpClientFactory HttpClientFactory
+@inject ISessionStorageService SessionStorage
+@inject UserService UserService
+@inject NavigationManager Navigation
+
+@if (role == "Caraeho" || role == "Manager")
+{
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Nutrition Management</h2>
+
+        <!-- Data Table -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>NID</th>
+                    <th>Title</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if (nutritions.Any())
+            {
+                @foreach (var nutrition in nutritions)
+                {
+                    <tr>
+                        <td>@nutrition.NID</td>
+                        <td>@nutrition.Title</td>
+                        <td>@nutrition.Ammount</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" @onclick="() => EditNutrition(nutrition)">Update</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteNutrition(nutrition.NID)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">No nutrition items found</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        <!-- Add Nutrition Button -->
+        <div class="mb-4">
+            <button class="btn btn-primary" @onclick="AddNewNutrition">Add Nutrition</button>
+        </div>
+
+        <!-- Nutrition Form -->
+        @if (showForm)
+        {
+            @if (currentNutrition.NID == null)
+            {
+                <NutritionForm currentNutrition="currentNutrition" OnSave="HandleSave" OnCancel="HandleCancel" />
+            }
+            else
+            {
+                <UpdateNutritionForm currentNutrition="currentNutrition" OnSave="HandleSave" OnCancel="HandleCancel" />
+            }
+        }
+    </div>
+}
+else
+{
+    <p>You do not have permission to view this page.</p>
+}
+
+@code {
+    [Parameter]
+    public string Menu_ID { get; set; }
+
+    private List<NutritionModel>? nutritions = new List<NutritionModel>();
+    private NutritionModel currentNutrition = new NutritionModel();
+    private bool showForm = false;
+    private string role = "";
+    private string token = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                token = await SessionStorage.GetItemAsync<string>("authToken");
+                var claims = RoleFetch.ParseClaimsFromJwt(token);
+                var roleClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+                role = roleClaim?.Value ?? "";
+                StateHasChanged();
+                if (role == "Caraeho" || role == "Manager")
+                {
+                    await LoadNutritions();
+                    StateHasChanged();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving token: {ex.Message}");
+            }
+        }
+    }
+
+    private async Task LoadNutritions()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var response = await client.GetAsync($"api/Nutrition/{Menu_ID}");
+        if (response.IsSuccessStatusCode)
+        {
+            nutritions = await response.Content.ReadFromJsonAsync<List<NutritionModel>>();
+        }
+    }
+
+    private void AddNewNutrition()
+    {
+        currentNutrition = new NutritionModel(); // Initialize a new Nutrition item for adding
+        currentNutrition.Menu_ID = Menu_ID; // Set the Menu_ID to the current menu
+        showForm = true;
+    }
+
+    private void EditNutrition(NutritionModel nutrition)
+    {
+        currentNutrition = nutrition; // Use the selected nutrition item for editing
+        showForm = true;
+    }
+
+    private async Task DeleteNutrition(string nid)
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var response = await client.DeleteAsync($"api/Nutrition/{nid}");
+        if (response.IsSuccessStatusCode)
+        {
+            var nutritionToRemove = nutritions.FirstOrDefault(n => n.NID == nid);
+            if (nutritionToRemove != null)
+            {
+                nutritions.Remove(nutritionToRemove);
+            }
+            await LoadNutritions();
+            HandleCancel();
+            StateHasChanged();
+        }
+        else
+        {
+            Console.WriteLine($"Failed to delete nutrition with NID {nid}. Status code: {response.StatusCode}");
+        }
+    }
+
+    private void HandleSave(NutritionModel savedNutrition)
+    {
+        if (nutritions.Any(n => n.NID == savedNutrition.NID))
+        {
+            var index = nutritions.FindIndex(n => n.NID == savedNutrition.NID);
+            nutritions[index] = savedNutrition;
+        }
+        else
+        {
+            nutritions.Add(savedNutrition);
+        }
+
+        showForm = false; // Hide the form after saving
+    }
+
+    private void HandleCancel()
+    {
+        showForm = false; // Hide the form without saving
+    }
+}

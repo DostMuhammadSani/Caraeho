@@ -222,3 +222,219 @@ Select * from Manager;
 Delete from [dbo].[AspNetUsers] where Email!='dostmuhammadsani@gmail.com'
 
 
+Create Table Category(
+Cat_ID varchar(50) Primary Key,
+Title varchar(50),
+BID varchar(50),
+FOREIGN KEY (BID) REFERENCES Branch(BID)
+On Delete Cascade
+
+)
+
+
+Create Table Menu(
+Menu_ID varchar(50) Primary Key,
+Item varchar(50),
+Quantity varchar(50),
+Serving varchar(50),
+Price varchar(50), 
+Cat_ID varchar(50),
+FOREIGN KEY (Cat_ID) REFERENCES Category(Cat_ID)
+On Delete Cascade
+)
+
+Create Table Ingredient(
+IID varchar(50) Primary Key,
+Title varchar(50),
+Ammount varchar(50),
+Menu_ID varchar(50),
+FOREIGN KEY (Menu_ID) REFERENCES Menu(Menu_ID)
+On Delete Cascade
+)
+
+Create Table Nutrition(
+NID varchar(50) Primary Key,
+Title varchar(50),
+Ammount varchar(50),
+Menu_ID varchar(50),
+FOREIGN KEY (Menu_ID) REFERENCES Menu(Menu_ID)
+On Delete Cascade
+)
+
+
+CREATE PROCEDURE InsertCategory
+    @Cat_ID varchar(50),
+    @Title varchar(50),
+    @BID varchar(50)
+AS
+BEGIN
+    INSERT INTO Category (Cat_ID, Title, BID)
+    VALUES (@Cat_ID, @Title, @BID);
+END
+
+CREATE PROCEDURE UpdateCategory
+    @Cat_ID varchar(50),
+    @Title varchar(50),
+    @BID varchar(50)
+AS
+BEGIN
+    UPDATE Category
+    SET Title = @Title,
+        BID = @BID
+    WHERE Cat_ID = @Cat_ID;
+END
+
+CREATE PROCEDURE DeleteCategory
+    @Cat_ID varchar(50)
+AS
+BEGIN
+    DELETE FROM Category
+    WHERE Cat_ID = @Cat_ID;
+END
+
+CREATE PROCEDURE GetCategory
+    @BID varchar(50)
+AS
+BEGIN
+   Select * FROM Category
+    WHERE BID = @BID;
+END
+
+
+CREATE PROCEDURE InsertMenu
+    @Menu_ID varchar(50),
+    @Item varchar(50),
+    @Quantity varchar(50),
+    @Serving varchar(50),
+    @Price varchar(50),
+    @Cat_ID varchar(50)
+AS
+BEGIN
+    INSERT INTO Menu (Menu_ID, Item, Quantity, Serving, Price, Cat_ID)
+    VALUES (@Menu_ID, @Item, @Quantity, @Serving, @Price, @Cat_ID);
+END
+
+CREATE PROCEDURE UpdateMenu
+    @Menu_ID varchar(50),
+    @Item varchar(50),
+    @Quantity varchar(50),
+    @Serving varchar(50),
+    @Price varchar(50),
+    @Cat_ID varchar(50)
+AS
+BEGIN
+    UPDATE Menu
+    SET Item = @Item,
+        Quantity = @Quantity,
+        Serving = @Serving,
+        Price = @Price,
+        Cat_ID = @Cat_ID
+    WHERE Menu_ID = @Menu_ID;
+END
+
+CREATE PROCEDURE DeleteMenu
+    @Menu_ID varchar(50)
+AS
+BEGIN
+    DELETE FROM Menu
+    WHERE Menu_ID = @Menu_ID;
+END
+
+CREATE PROCEDURE GETMENU
+ @Cat_ID varchar(50)
+ AS BEGIN
+ SELECT * FROM Menu WHERE Cat_ID=@Cat_ID
+ END
+
+ CREATE PROCEDURE InsertIngredient
+    @IID varchar(50),
+    @Title varchar(50),
+    @Ammount varchar(50),
+    @Menu_ID varchar(50)
+AS
+BEGIN
+    INSERT INTO Ingredient (IID, Title, Ammount, Menu_ID)
+    VALUES (@IID, @Title, @Ammount, @Menu_ID);
+END
+
+CREATE PROCEDURE UpdateIngredient
+    @IID varchar(50),
+    @Title varchar(50),
+    @Ammount varchar(50),
+    @Menu_ID varchar(50)
+AS
+BEGIN
+    UPDATE Ingredient
+    SET Title = @Title,
+        Ammount = @Ammount,
+        Menu_ID = @Menu_ID
+    WHERE IID = @IID;
+END
+
+
+CREATE PROCEDURE DeleteIngredient
+    @IID varchar(50)
+AS
+BEGIN
+    DELETE FROM Ingredient
+    WHERE IID = @IID;
+END
+
+CREATE PROCEDURE GetIngredientsByMenuID
+    @Menu_ID varchar(50)
+AS
+BEGIN
+    SELECT * FROM Ingredient WHERE Menu_ID = @Menu_ID;
+END
+
+
+CREATE PROCEDURE InsertNutrition
+    @NID VARCHAR(50),
+    @Title VARCHAR(50),
+    @Ammount VARCHAR(50),
+    @Menu_ID VARCHAR(50)
+AS
+BEGIN
+ 
+
+    INSERT INTO Nutrition (NID, Title, Ammount, Menu_ID)
+    VALUES (@NID, @Title, @Ammount, @Menu_ID);
+END;
+
+CREATE PROCEDURE UpdateNutrition
+    @NID VARCHAR(50),
+    @Title VARCHAR(50),
+    @Ammount VARCHAR(50),
+    @Menu_ID VARCHAR(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Nutrition
+    SET Title = @Title,
+        Ammount = @Ammount,
+        Menu_ID = @Menu_ID
+    WHERE NID = @NID;
+END;
+
+CREATE PROCEDURE DeleteNutrition
+    @NID VARCHAR(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM Nutrition
+    WHERE NID = @NID;
+END;
+
+CREATE PROCEDURE GetNutrition
+    @Menu_ID VARCHAR(50)
+AS
+BEGIN
+ 
+
+    SELECT * 
+    FROM Nutrition
+    WHERE Menu_ID = @Menu_ID;
+END;
+

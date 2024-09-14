@@ -1,0 +1,98 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using ClassLibraryModel
+@using ClassLibraryModel.ClassLibraryModel
+@inject IHttpClientFactory HttpClientFactory
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Update Menu Item</h4>
+        <EditForm Model="currentMenu" OnValidSubmit="HandleUpdateClick">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <!-- Error Message Display for Update Menu Item -->
+            @if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                    <div class="alert alert-danger">@ErrorMessage</div>
+            }
+
+            <div class="form-group">
+                <label for="menuId">Menu ID (Menu_ID)</label>
+                <InputText id="menuId" class="form-control" @bind-Value="currentMenu.Menu_ID" disabled />
+            </div>
+
+            <div class="form-group">
+                <label for="item">Item Name</label>
+                <InputText id="item" class="form-control" @bind-Value="currentMenu.Item" required />
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <InputText id="quantity" class="form-control" @bind-Value="currentMenu.Quantity" required />
+            </div>
+
+            <div class="form-group">
+                <label for="serving">Serving</label>
+                <InputText id="serving" class="form-control" @bind-Value="currentMenu.Serving" required />
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <InputText id="price" class="form-control" @bind-Value="currentMenu.Price" required />
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category ID (Cat_ID)</label>
+                <InputText id="category" class="form-control" @bind-Value="currentMenu.Cat_ID" disabled />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter] public MenuModel currentMenu { get; set; }
+    [Parameter] public EventCallback<MenuModel> OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+
+    private string ErrorMessage { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    private async Task HandleUpdateClick()
+    {
+        try
+        {
+            var client = HttpClientFactory.CreateClient("AuthApi");
+            var response = await client.PutAsJsonAsync("api/Menu", currentMenu);
+
+            if (response.IsSuccessStatusCode)
+            {
+                await OnSave.InvokeAsync(currentMenu);
+            }
+            else
+            {
+                // Capture API error response
+                ErrorMessage = await response.Content.ReadAsStringAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log and display the exception message
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            ErrorMessage = "An unexpected error occurred. Please try again later.";
+        }
+    }
+
+    private void Cancel()
+    {
+        OnCancel.InvokeAsync();
+    }
+}

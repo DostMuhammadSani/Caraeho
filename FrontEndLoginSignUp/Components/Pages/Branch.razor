@@ -7,6 +7,7 @@
 @inject IHttpClientFactory HttpClientFactory
 @inject ISessionStorageService SessionStorage
 @inject UserService UserService
+@inject NavigationManager Navigation
 
 @if (role == "Caraeho" || role=="Manager")
 {
@@ -20,6 +21,7 @@
                         <th>BID</th>
                         <th>BName</th>
                         <th>BAddress</th>
+                        <th>Area</th>
                         <th>City</th>
                         <th>CID</th>
                         <th>Actions</th>
@@ -34,7 +36,8 @@
                                         <td>@branch.BID</td>
                                         <td>@branch.BName</td>
                                         <td>@branch.BAddress</td>
-                                        <td>@branch.City</td>
+                                        <td>@branch.Area</td>
+                                         <td>@branch.City</td>
                                         <td>@branch.CID</td>
                                         <td>
                                             <button class="btn btn-warning btn-sm" @onclick="() => EditBranch(branch)">Update</button>
@@ -42,6 +45,7 @@
                                 {
                                     <button class="btn btn-danger btn-sm" @onclick="() => DeleteBranch(branch.BID)">Delete</button>
                                 }
+                                             <button class="btn btn-warning btn-sm" @onclick="() => AddMenu(branch.BID)">Menu</button>
                             </td>
                                     </tr>
                     }
@@ -154,6 +158,11 @@ else
     {
         currentBranch = new BranchModel(); // Initialize a new Branch for adding
         showForm = true;
+    }
+
+    private void AddMenu(string BID)
+    {
+        Navigation.NavigateTo($"/category/{BID}");
     }
 
     private void EditBranch(BranchModel branch)
