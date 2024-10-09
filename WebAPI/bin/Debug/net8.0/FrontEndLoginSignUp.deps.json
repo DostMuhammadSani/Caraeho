@@ -166,7 +166,10 @@
       "System.Security.Principal.Windows/4.7.0": {},
       "ClassLibraryModel/1.0.0": {
         "runtime": {
-          "ClassLibraryModel.dll": {}
+          "ClassLibraryModel.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "DALLibrary/1.0.0": {
@@ -175,7 +178,10 @@
           "System.Data.SqlClient": "4.8.6"
         },
         "runtime": {
-          "DALLibrary.dll": {}
+          "DALLibrary.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

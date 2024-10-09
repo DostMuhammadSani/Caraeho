@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "sE16PbhcGJaZVeB0ZrcoygJHQnajh68Ycqb7wha7j4Q=",
+  "Hash": "8MyBFVIctLw5utw6hXi9FOH4Hd+o2kXSBLaXQv/XUSE=",
   "Source": "WebAPI",
   "BasePath": "_content/WebAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj",
+      "Identity": "D:\\Caraeho\\FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj",
       "Version": 2,
       "Source": "FrontEndLoginSignUp",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
@@ -22,17 +22,17 @@
     {
       "Name": "FrontEndLoginSignUp\\wwwroot",
       "Source": "FrontEndLoginSignUp",
-      "ContentRoot": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\wwwroot\\",
+      "ContentRoot": "D:\\Caraeho\\FrontEndLoginSignUp\\wwwroot\\",
       "BasePath": "_content/FrontEndLoginSignUp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FrontEndLoginSignUp.bundle.scp.css",
+      "Identity": "D:\\Caraeho\\FrontEndLoginSignUp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FrontEndLoginSignUp.bundle.scp.css",
       "SourceId": "FrontEndLoginSignUp",
       "SourceType": "Project",
-      "ContentRoot": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "D:\\Caraeho\\FrontEndLoginSignUp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/FrontEndLoginSignUp",
       "RelativePath": "FrontEndLoginSignUp.bundle.scp.css",
       "AssetKind": "All",
@@ -45,13 +45,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FrontEndLoginSignUp.bundle.scp.css"
+      "OriginalItemSpec": "D:\\Caraeho\\FrontEndLoginSignUp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FrontEndLoginSignUp.bundle.scp.css"
     },
     {
-      "Identity": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\wwwroot\\app.css",
+      "Identity": "D:\\Caraeho\\FrontEndLoginSignUp\\wwwroot\\app.css",
       "SourceId": "FrontEndLoginSignUp",
       "SourceType": "Project",
-      "ContentRoot": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\wwwroot\\",
+      "ContentRoot": "D:\\Caraeho\\FrontEndLoginSignUp\\wwwroot\\",
       "BasePath": "_content/FrontEndLoginSignUp",
       "RelativePath": "app.css",
       "AssetKind": "All",
@@ -67,10 +67,10 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "D:\\Caraeho\\FrontEndLoginSignUp\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "FrontEndLoginSignUp",
       "SourceType": "Project",
-      "ContentRoot": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\wwwroot\\",
+      "ContentRoot": "D:\\Caraeho\\FrontEndLoginSignUp\\wwwroot\\",
       "BasePath": "_content/FrontEndLoginSignUp",
       "RelativePath": "bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -86,10 +86,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "D:\\Caraeho\\FrontEndLoginSignUp\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "FrontEndLoginSignUp",
       "SourceType": "Project",
-      "ContentRoot": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\wwwroot\\",
+      "ContentRoot": "D:\\Caraeho\\FrontEndLoginSignUp\\wwwroot\\",
       "BasePath": "_content/FrontEndLoginSignUp",
       "RelativePath": "bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -105,10 +105,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\wwwroot\\favicon.png",
+      "Identity": "D:\\Caraeho\\FrontEndLoginSignUp\\wwwroot\\favicon.png",
       "SourceId": "FrontEndLoginSignUp",
       "SourceType": "Project",
-      "ContentRoot": "D:\\SummerSchool\\Careaho\\FrontEndLoginSignUp\\wwwroot\\",
+      "ContentRoot": "D:\\Caraeho\\FrontEndLoginSignUp\\wwwroot\\",
       "BasePath": "_content/FrontEndLoginSignUp",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
@@ -124,10 +124,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.png"
     },
     {
-      "Identity": "D:\\SummerSchool\\Careaho\\WebAPI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\WebAPI.styles.css",
+      "Identity": "D:\\Caraeho\\WebAPI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\WebAPI.styles.css",
       "SourceId": "WebAPI",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\SummerSchool\\Careaho\\WebAPI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "D:\\Caraeho\\WebAPI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/WebAPI",
       "RelativePath": "WebAPI.styles.css",
       "AssetKind": "All",
@@ -140,7 +140,7 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\SummerSchool\\Careaho\\WebAPI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\WebAPI.styles.css"
+      "OriginalItemSpec": "D:\\Caraeho\\WebAPI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\WebAPI.styles.css"
     }
   ]
 }

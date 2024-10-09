@@ -1,10 +1,25 @@
-Select * from Persons;
 
-Delete from Persons;
+ CREATE DATABASE CareahoDB;
+  CREATE DATABASE CareahoAuth;
 
-Delete from AspNetUsers;
 
-Select * from AspNetUsers;
+Create Table Persons(
+Id varchar(50) Primary Key,
+Name varchar(50),
+Email varchar(50),
+Phone varchar(50)
+)
+
+Create Proc SavePerson
+@Id varchar(50),
+@Name varchar(50),
+@Email varchar(50),
+@Phone varchar(50)
+As
+Begin
+Insert into Persons values (@Id,@Name,@Email,@Phone);
+End
+
 
 
 Create Table Company(
@@ -12,8 +27,9 @@ CID varchar(50) Primary Key,
 CName varchar(50),
 City varchar(50),
 PID varchar(50),
+CType varchar(50),
 FOREIGN KEY (PID) REFERENCES Persons(Id)
-
+On Delete Cascade
 )
 
 Create Table SocialMedia(
@@ -22,6 +38,7 @@ Website varchar(100),
 Facebook varchar(100),
 Instagram varchar(100),
 FOREIGN KEY (CID) REFERENCES Company(CID)
+On Delete Cascade
 )
 
 Create Table Branch(
@@ -30,7 +47,9 @@ BName varchar(100),
 BAddress varchar(100),
 City varchar(100),
 CID varchar(50),
+Area varchar(100),
 FOREIGN KEY (CID) REFERENCES Company(CID)
+On Delete Cascade
 )
 
 
@@ -41,6 +60,7 @@ Email varchar(100),
 Contact varchar(100),
 BID varchar(50),
 FOREIGN KEY (BID) REFERENCES Branch(BID)
+On Delete Cascade
 )
 
 
@@ -50,9 +70,10 @@ Create Proc SaveCompany
 @CID varchar(50) ,
 @CName varchar(50),
 @City varchar(50),
-@PID varchar(50)
+@PID varchar(50),
+@CType varchar(50)
 as begin
-Insert Into Company Values(@CID,@CName,@City,@PID);
+Insert Into Company Values(@CID,@CName,@City,@PID,@CType);
 End
 
 Create Proc GetCompany
@@ -72,9 +93,10 @@ End
 Create Proc UpdateCompany
 @CID varchar(50) ,
 @CName varchar(50),
-@City varchar(50)
+@City varchar(50),
+@CType varchar(50)
 as begin
-Update Company set CName=@CName,City=@City where CID=@CID ;
+Update Company set CName=@CName,City=@City,CType=@CType where CID=@CID ;
 End
 
 Create Proc DeleteCompany
@@ -119,11 +141,12 @@ CREATE PROC SaveBranch
     @BName varchar(100),
     @BAddress varchar(100),
     @City varchar(100),
-    @CID varchar(50)
+    @CID varchar(50),
+	@Area varchar(100)
 AS
 BEGIN
-    INSERT INTO Branch (BID, BName, BAddress, City, CID)
-    VALUES (@BID, @BName, @BAddress, @City, @CID);
+    INSERT INTO Branch (BID, BName, BAddress, City, CID,Area)
+    VALUES (@BID, @BName, @BAddress, @City, @CID,@Area);
 END
 
 CREATE PROC GetBranch
@@ -136,13 +159,16 @@ CREATE PROC UpdateBranch
     @BID varchar(50),
     @BName varchar(100),
     @BAddress varchar(100),
-    @City varchar(100)
+    @City varchar(100),
+	@Area varchar(100)
+
 AS
 BEGIN
     UPDATE Branch
-    SET BName = @BName, BAddress = @BAddress, City = @City
+    SET BName = @BName, BAddress = @BAddress, City = @City, Area=@Area
     WHERE BID = @BID;
 END
+
 CREATE PROC DeleteBranch
     @BID varchar(50)
 AS
@@ -198,7 +224,7 @@ BEGIN
     WHERE MID = @MID;
 END
 
-CREATE PROCEDURE SelectManager
+CREATE PROCEDURE SelectManagers
   @PID varchar(50)
 AS
 BEGIN

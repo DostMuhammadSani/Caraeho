@@ -10,3 +10,15 @@ D:\SummerSchool\Careaho\ClassLibraryModel\obj\Debug\net8.0\refint\ClassLibraryMo
 D:\SummerSchool\Careaho\ClassLibraryModel\obj\Debug\net8.0\ClassLibraryModel.pdb
 D:\SummerSchool\Careaho\ClassLibraryModel\obj\Debug\net8.0\ref\ClassLibraryModel.dll
 D:\SummerSchool\Careaho\ClassLibraryModel\obj\Debug\net8.0\ClassLibraryModel.sourcelink.json
+D:\Caraeho\ClassLibraryModel\bin\Debug\net8.0\ClassLibraryModel.deps.json
+D:\Caraeho\ClassLibraryModel\bin\Debug\net8.0\ClassLibraryModel.dll
+D:\Caraeho\ClassLibraryModel\bin\Debug\net8.0\ClassLibraryModel.pdb
+D:\Caraeho\ClassLibraryModel\obj\Debug\net8.0\ClassLibraryModel.GeneratedMSBuildEditorConfig.editorconfig
+D:\Caraeho\ClassLibraryModel\obj\Debug\net8.0\ClassLibraryModel.AssemblyInfoInputs.cache
+D:\Caraeho\ClassLibraryModel\obj\Debug\net8.0\ClassLibraryModel.AssemblyInfo.cs
+D:\Caraeho\ClassLibraryModel\obj\Debug\net8.0\ClassLibraryModel.csproj.CoreCompileInputs.cache
+D:\Caraeho\ClassLibraryModel\obj\Debug\net8.0\ClassLibraryModel.sourcelink.json
+D:\Caraeho\ClassLibraryModel\obj\Debug\net8.0\ClassLibraryModel.dll
+D:\Caraeho\ClassLibraryModel\obj\Debug\net8.0\refint\ClassLibraryModel.dll
+D:\Caraeho\ClassLibraryModel\obj\Debug\net8.0\ClassLibraryModel.pdb
+D:\Caraeho\ClassLibraryModel\obj\Debug\net8.0\ref\ClassLibraryModel.dll

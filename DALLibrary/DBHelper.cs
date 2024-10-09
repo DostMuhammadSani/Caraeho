@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DALLibrary
 {
@@ -11,7 +12,7 @@ namespace DALLibrary
     {
         public static SqlConnection getConnection()
         {
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-0H92HAM\\SQLEXPRESS;Initial Catalog=CaraehoDB;Integrated Security=True");
+            SqlConnection con = new SqlConnection("Data Source=DESKTOP-QQB77P7\\SQLEXPRESS;Initial Catalog=CareahoDB;Integrated Security=True");
             return con;
         }
     }

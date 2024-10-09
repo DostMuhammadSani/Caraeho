@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SummerSchool\\Careaho\\DALLibrary\\DALLibrary.csproj": {}
+    "D:\\Caraeho\\DALLibrary\\DALLibrary.csproj": {}
   },
   "projects": {
-    "D:\\SummerSchool\\Careaho\\ClassLibraryModel\\ClassLibraryModel.csproj": {
+    "D:\\Caraeho\\ClassLibraryModel\\ClassLibraryModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SummerSchool\\Careaho\\ClassLibraryModel\\ClassLibraryModel.csproj",
+        "projectUniqueName": "D:\\Caraeho\\ClassLibraryModel\\ClassLibraryModel.csproj",
         "projectName": "ClassLibraryModel",
-        "projectPath": "D:\\SummerSchool\\Careaho\\ClassLibraryModel\\ClassLibraryModel.csproj",
-        "packagesPath": "C:\\Users\\Saif\\.nuget\\packages\\",
-        "outputPath": "D:\\SummerSchool\\Careaho\\ClassLibraryModel\\obj\\",
+        "projectPath": "D:\\Caraeho\\ClassLibraryModel\\ClassLibraryModel.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\Caraeho\\ClassLibraryModel\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Saif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,6 +39,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -55,21 +65,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\SummerSchool\\Careaho\\DALLibrary\\DALLibrary.csproj": {
+    "D:\\Caraeho\\DALLibrary\\DALLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SummerSchool\\Careaho\\DALLibrary\\DALLibrary.csproj",
+        "projectUniqueName": "D:\\Caraeho\\DALLibrary\\DALLibrary.csproj",
         "projectName": "DALLibrary",
-        "projectPath": "D:\\SummerSchool\\Careaho\\DALLibrary\\DALLibrary.csproj",
-        "packagesPath": "C:\\Users\\Saif\\.nuget\\packages\\",
-        "outputPath": "D:\\SummerSchool\\Careaho\\DALLibrary\\obj\\",
+        "projectPath": "D:\\Caraeho\\DALLibrary\\DALLibrary.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\Caraeho\\DALLibrary\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Saif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -77,14 +91,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\SummerSchool\\Careaho\\ClassLibraryModel\\ClassLibraryModel.csproj": {
-                "projectPath": "D:\\SummerSchool\\Careaho\\ClassLibraryModel\\ClassLibraryModel.csproj"
+              "D:\\Caraeho\\ClassLibraryModel\\ClassLibraryModel.csproj": {
+                "projectPath": "D:\\Caraeho\\ClassLibraryModel\\ClassLibraryModel.csproj"
               }
             }
           }
@@ -93,6 +108,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -120,7 +140,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
