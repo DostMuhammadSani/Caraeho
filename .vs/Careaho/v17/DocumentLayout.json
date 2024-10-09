@@ -3,12 +3,72 @@
   "WorkspaceRootPath": "D:\\Caraeho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{00747C81-03CC-44FE-A4A8-8F48F2AA4099}|DALLibrary\\DALLibrary.csproj|d:\\caraeho\\dallibrary\\dalclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00747C81-03CC-44FE-A4A8-8F48F2AA4099}|DALLibrary\\DALLibrary.csproj|solutionrelative:dallibrary\\dalclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|d:\\caraeho\\frontendloginsignup\\components\\pages\\details.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|solutionrelative:frontendloginsignup\\components\\pages\\details.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|d:\\caraeho\\webapi\\controllers\\cuisinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\cuisinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|d:\\caraeho\\frontendloginsignup\\components\\pages\\branch.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|solutionrelative:frontendloginsignup\\components\\pages\\branch.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|d:\\caraeho\\frontendloginsignup\\components\\pages\\branchform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|solutionrelative:frontendloginsignup\\components\\pages\\branchform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|d:\\caraeho\\webapi\\controllers\\ambiancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\ambiancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|d:\\caraeho\\frontendloginsignup\\components\\pages\\nutrition.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|solutionrelative:frontendloginsignup\\components\\pages\\nutrition.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|d:\\caraeho\\webapi\\controllers\\branchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\branchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|d:\\caraeho\\classlibrarymodel\\foodtypemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|solutionrelative:classlibrarymodel\\foodtypemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|d:\\caraeho\\classlibrarymodel\\eventmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|solutionrelative:classlibrarymodel\\eventmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|d:\\caraeho\\classlibrarymodel\\seatingmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|solutionrelative:classlibrarymodel\\seatingmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|d:\\caraeho\\classlibrarymodel\\ambiancemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|solutionrelative:classlibrarymodel\\ambiancemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|d:\\caraeho\\classlibrarymodel\\cuisinemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|solutionrelative:classlibrarymodel\\cuisinemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|d:\\caraeho\\webapi\\controllers\\foodtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\foodtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|d:\\caraeho\\webapi\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|d:\\caraeho\\webapi\\controllers\\seatingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\seatingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|d:\\caraeho\\webapi\\controllers\\ingredientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\ingredientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00747C81-03CC-44FE-A4A8-8F48F2AA4099}|DALLibrary\\DALLibrary.csproj|d:\\caraeho\\dallibrary\\dalclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00747C81-03CC-44FE-A4A8-8F48F2AA4099}|DALLibrary\\DALLibrary.csproj|solutionrelative:dallibrary\\dalclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|d:\\caraeho\\webapi\\controllers\\companycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,10 +107,6 @@
       "RelativeMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\personcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|d:\\caraeho\\frontendloginsignup\\components\\pages\\nutrition.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|solutionrelative:frontendloginsignup\\components\\pages\\nutrition.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|d:\\caraeho\\frontendloginsignup\\components\\pages\\itemform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|solutionrelative:frontendloginsignup\\components\\pages\\itemform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -65,10 +121,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|d:\\caraeho\\classlibrarymodel\\nutritionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{46DE582A-EA2C-4C1D-98C3-FA0CCCDB8130}|ClassLibraryModel\\ClassLibraryModel.csproj|solutionrelative:classlibrarymodel\\nutritionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|d:\\caraeho\\webapi\\controllers\\ingredientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33AFDC2D-8E09-46C3-8609-80C7278A9C54}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\ingredientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|d:\\caraeho\\frontendloginsignup\\components\\pages\\updatecompanyform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -105,14 +157,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|d:\\caraeho\\frontendloginsignup\\components\\pages\\category.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|solutionrelative:frontendloginsignup\\components\\pages\\category.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|d:\\caraeho\\frontendloginsignup\\components\\pages\\branchform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|solutionrelative:frontendloginsignup\\components\\pages\\branchform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|d:\\caraeho\\frontendloginsignup\\components\\pages\\branch.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|solutionrelative:frontendloginsignup\\components\\pages\\branch.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{678C90CE-4212-4008-B881-A35C1F53BC27}|FrontEndLoginSignUp\\FrontEndLoginSignUp.csproj|d:\\caraeho\\frontendloginsignup\\components\\pages\\company.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -218,24 +262,89 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Details.razor",
+              "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Details.razor",
+              "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Details.razor",
+              "ToolTip": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Details.razor",
+              "RelativeToolTip": "FrontEndLoginSignUp\\Components\\Pages\\Details.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-09T13:33:18.257Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CompanyController.cs",
-              "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\CompanyController.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Controllers\\CompanyController.cs",
-              "ToolTip": "D:\\Caraeho\\WebAPI\\Controllers\\CompanyController.cs",
-              "RelativeToolTip": "WebAPI\\Controllers\\CompanyController.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAA/wDIAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T03:52:00.598Z",
+              "Title": "Branch.razor",
+              "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Branch.razor",
+              "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Branch.razor",
+              "ToolTip": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Branch.razor",
+              "RelativeToolTip": "FrontEndLoginSignUp\\Components\\Pages\\Branch.razor",
+              "ViewState": "AgIAALEAAAAAAAAAAAAAAJ8AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-08T03:52:00.567Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "CuisineController.cs",
+              "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\CuisineController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\CuisineController.cs",
+              "ToolTip": "D:\\Caraeho\\WebAPI\\Controllers\\CuisineController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\CuisineController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T13:16:44.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BranchForm.razor",
+              "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\BranchForm.razor",
+              "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\BranchForm.razor",
+              "ToolTip": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\BranchForm.razor",
+              "RelativeToolTip": "FrontEndLoginSignUp\\Components\\Pages\\BranchForm.razor",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAGQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-08T03:52:00.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AmbianceController.cs",
+              "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\AmbianceController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\AmbianceController.cs",
+              "ToolTip": "D:\\Caraeho\\WebAPI\\Controllers\\AmbianceController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\AmbianceController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T13:17:21.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Nutrition.razor",
+              "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Nutrition.razor",
+              "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Nutrition.razor",
+              "ToolTip": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Nutrition.razor",
+              "RelativeToolTip": "FrontEndLoginSignUp\\Components\\Pages\\Nutrition.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-08T03:52:00.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "BranchController.cs",
               "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\BranchController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\BranchController.cs",
@@ -248,7 +357,111 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
+              "Title": "SeatingModel.cs",
+              "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\SeatingModel.cs",
+              "RelativeDocumentMoniker": "ClassLibraryModel\\SeatingModel.cs",
+              "ToolTip": "D:\\Caraeho\\ClassLibraryModel\\SeatingModel.cs",
+              "RelativeToolTip": "ClassLibraryModel\\SeatingModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T13:29:18.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EventModel.cs",
+              "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\EventModel.cs",
+              "RelativeDocumentMoniker": "ClassLibraryModel\\EventModel.cs",
+              "ToolTip": "D:\\Caraeho\\ClassLibraryModel\\EventModel.cs",
+              "RelativeToolTip": "ClassLibraryModel\\EventModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T13:29:42.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FoodTypeModel.cs",
+              "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\FoodTypeModel.cs",
+              "RelativeDocumentMoniker": "ClassLibraryModel\\FoodTypeModel.cs",
+              "ToolTip": "D:\\Caraeho\\ClassLibraryModel\\FoodTypeModel.cs",
+              "RelativeToolTip": "ClassLibraryModel\\FoodTypeModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T13:30:15.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AmbianceModel.cs",
+              "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\AmbianceModel.cs",
+              "RelativeDocumentMoniker": "ClassLibraryModel\\AmbianceModel.cs",
+              "ToolTip": "D:\\Caraeho\\ClassLibraryModel\\AmbianceModel.cs",
+              "RelativeToolTip": "ClassLibraryModel\\AmbianceModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T13:28:48.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CuisineModel.cs",
+              "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\CuisineModel.cs",
+              "RelativeDocumentMoniker": "ClassLibraryModel\\CuisineModel.cs",
+              "ToolTip": "D:\\Caraeho\\ClassLibraryModel\\CuisineModel.cs",
+              "RelativeToolTip": "ClassLibraryModel\\CuisineModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T13:28:19.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FoodTypeController.cs",
+              "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\FoodTypeController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\FoodTypeController.cs",
+              "ToolTip": "D:\\Caraeho\\WebAPI\\Controllers\\FoodTypeController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\FoodTypeController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAADwvyYAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T13:26:23.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "EventController.cs",
+              "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\EventController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\EventController.cs",
+              "ToolTip": "D:\\Caraeho\\WebAPI\\Controllers\\EventController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\EventController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAADwvzYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T13:21:42.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SeatingController.cs",
+              "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\SeatingController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\SeatingController.cs",
+              "ToolTip": "D:\\Caraeho\\WebAPI\\Controllers\\SeatingController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\SeatingController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T13:17:44.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "SocialModel.cs",
               "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\SocialModel.cs",
               "RelativeDocumentMoniker": "ClassLibraryModel\\SocialModel.cs",
@@ -256,12 +469,11 @@
               "RelativeToolTip": "ClassLibraryModel\\SocialModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T03:52:00.687Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-08T03:52:00.687Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 21,
               "Title": "Company.cs",
               "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\Company.cs",
               "RelativeDocumentMoniker": "ClassLibraryModel\\Company.cs",
@@ -269,25 +481,49 @@
               "RelativeToolTip": "ClassLibraryModel\\Company.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T03:52:00.636Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-08T03:52:00.636Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 16,
               "Title": "DALClass.cs",
               "DocumentMoniker": "D:\\Caraeho\\DALLibrary\\DALClass.cs",
               "RelativeDocumentMoniker": "DALLibrary\\DALClass.cs",
               "ToolTip": "D:\\Caraeho\\DALLibrary\\DALClass.cs",
               "RelativeToolTip": "DALLibrary\\DALClass.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAIA4wHIAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAewHgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-08T03:52:00.571Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 15,
+              "Title": "IngredientController.cs",
+              "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\IngredientController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\IngredientController.cs",
+              "ToolTip": "D:\\Caraeho\\WebAPI\\Controllers\\IngredientController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\IngredientController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-08T03:52:00.539Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CompanyController.cs",
+              "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\CompanyController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\CompanyController.cs",
+              "ToolTip": "D:\\Caraeho\\WebAPI\\Controllers\\CompanyController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\CompanyController.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAA/wDIAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-08T03:52:00.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "ManagerModel.cs",
               "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\ManagerModel.cs",
               "RelativeDocumentMoniker": "ClassLibraryModel\\ManagerModel.cs",
@@ -295,12 +531,11 @@
               "RelativeToolTip": "ClassLibraryModel\\ManagerModel.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAQwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T03:52:00.683Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-08T03:52:00.683Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 19,
               "Title": "BranchModel.cs",
               "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\BranchModel.cs",
               "RelativeDocumentMoniker": "ClassLibraryModel\\BranchModel.cs",
@@ -308,12 +543,11 @@
               "RelativeToolTip": "ClassLibraryModel\\BranchModel.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T03:52:00.632Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-08T03:52:00.632Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 22,
               "Title": "PersonModel.cs",
               "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\PersonModel.cs",
               "RelativeDocumentMoniker": "ClassLibraryModel\\PersonModel.cs",
@@ -321,12 +555,11 @@
               "RelativeToolTip": "ClassLibraryModel\\PersonModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T03:52:00.696Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-08T03:52:00.696Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 24,
               "Title": "DBHelper.cs",
               "DocumentMoniker": "D:\\Caraeho\\DALLibrary\\DBHelper.cs",
               "RelativeDocumentMoniker": "DALLibrary\\DBHelper.cs",
@@ -334,12 +567,11 @@
               "RelativeToolTip": "DALLibrary\\DBHelper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T03:52:00.664Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-08T03:52:00.664Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 25,
               "Title": "PersonController.cs",
               "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\PersonController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\PersonController.cs",
@@ -351,7 +583,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 29,
               "Title": "NutritionModel.cs",
               "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\NutritionModel.cs",
               "RelativeDocumentMoniker": "ClassLibraryModel\\NutritionModel.cs",
@@ -363,7 +595,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 23,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Caraeho\\WebAPI\\appsettings.json",
               "RelativeDocumentMoniker": "WebAPI\\appsettings.json",
@@ -371,24 +603,11 @@
               "RelativeToolTip": "WebAPI\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-09T08:59:47.783Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T08:59:47.783Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Nutrition.razor",
-              "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Nutrition.razor",
-              "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Nutrition.razor",
-              "ToolTip": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Nutrition.razor",
-              "RelativeToolTip": "FrontEndLoginSignUp\\Components\\Pages\\Nutrition.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-08T03:52:00.513Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 26,
               "Title": "ItemForm.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\ItemForm.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\ItemForm.razor",
@@ -400,7 +619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 28,
               "Title": "NutritionController.cs",
               "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\NutritionController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\NutritionController.cs",
@@ -412,7 +631,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 30,
               "Title": "UpdateCompanyForm.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\UpdateCompanyForm.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\UpdateCompanyForm.razor",
@@ -424,7 +643,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 27,
               "Title": "Ingredient.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Ingredient.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Ingredient.razor",
@@ -436,7 +655,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 31,
               "Title": "UpdateCategoryForm.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\UpdateCategoryForm.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\UpdateCategoryForm.razor",
@@ -448,19 +667,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "IngredientController.cs",
-              "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\IngredientController.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Controllers\\IngredientController.cs",
-              "ToolTip": "D:\\Caraeho\\WebAPI\\Controllers\\IngredientController.cs",
-              "RelativeToolTip": "WebAPI\\Controllers\\IngredientController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADYAAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T03:52:00.539Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 32,
               "Title": "CompanyForm.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\CompanyForm.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\CompanyForm.razor",
@@ -472,7 +679,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 33,
               "Title": "Item.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Item.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Item.razor",
@@ -484,7 +691,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 34,
               "Title": "IngredientModel.cs",
               "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\IngredientModel.cs",
               "RelativeDocumentMoniker": "ClassLibraryModel\\IngredientModel.cs",
@@ -496,7 +703,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 35,
               "Title": "UpdateItemForm.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\UpdateItemForm.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\UpdateItemForm.razor",
@@ -508,7 +715,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 37,
               "Title": "CategoryForm.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\CategoryForm.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\CategoryForm.razor",
@@ -520,7 +727,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 36,
               "Title": "MenuController.cs",
               "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\MenuController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\MenuController.cs",
@@ -532,7 +739,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 39,
               "Title": "Company.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Company.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Company.razor",
@@ -544,31 +751,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Branch.razor",
-              "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Branch.razor",
-              "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Branch.razor",
-              "ToolTip": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Branch.razor",
-              "RelativeToolTip": "FrontEndLoginSignUp\\Components\\Pages\\Branch.razor",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAAADIAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-08T03:52:00.567Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "BranchForm.razor",
-              "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\BranchForm.razor",
-              "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\BranchForm.razor",
-              "ToolTip": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\BranchForm.razor",
-              "RelativeToolTip": "FrontEndLoginSignUp\\Components\\Pages\\BranchForm.razor",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAAB8AAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-08T03:52:00.575Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 38,
               "Title": "Category.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Category.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Category.razor",
@@ -580,7 +763,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 40,
               "Title": "MenuModel.cs",
               "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\MenuModel.cs",
               "RelativeDocumentMoniker": "ClassLibraryModel\\MenuModel.cs",
@@ -592,7 +775,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 41,
               "Title": "AddMenu.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\AddMenu.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\AddMenu.razor",
@@ -604,7 +787,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 42,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\CategoryController.cs",
@@ -616,7 +799,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 43,
               "Title": "SocialController.cs",
               "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\SocialController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\SocialController.cs",
@@ -628,7 +811,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 47,
               "Title": "CategoryModel.cs",
               "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\CategoryModel.cs",
               "RelativeDocumentMoniker": "ClassLibraryModel\\CategoryModel.cs",
@@ -640,7 +823,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 46,
               "Title": "Manager.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Manager.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Manager.razor",
@@ -652,7 +835,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 44,
               "Title": "UpdateManagerForm.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\UpdateManagerForm.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\UpdateManagerForm.razor",
@@ -664,7 +847,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 45,
               "Title": "ManagerForm.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\ManagerForm.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\ManagerForm.razor",
@@ -676,7 +859,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 50,
               "Title": "UpdateBranchForm.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\UpdateBranchForm.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\UpdateBranchForm.razor",
@@ -688,7 +871,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 49,
               "Title": "Login.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Login.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Login.razor",
@@ -700,7 +883,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 48,
               "Title": "ManagerController.cs",
               "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\ManagerController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\ManagerController.cs",
@@ -712,7 +895,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 51,
               "Title": "Counter.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Counter.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Counter.razor",
@@ -724,7 +907,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 52,
               "Title": "Home.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Home.razor",
@@ -736,7 +919,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 53,
               "Title": "CRUD.cs",
               "DocumentMoniker": "D:\\SummerSchool\\SummerProject\\ClassDAL\\CRUD.cs",
               "RelativeDocumentMoniker": "..\\SummerSchool\\SummerProject\\ClassDAL\\CRUD.cs",
@@ -748,7 +931,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 55,
               "Title": "Register.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Pages\\Register.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Pages\\Register.razor",
@@ -760,7 +943,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 54,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\AuthController.cs",
@@ -772,7 +955,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 56,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Caraeho\\WebAPI\\Program.cs",
               "RelativeDocumentMoniker": "WebAPI\\Program.cs",
@@ -784,7 +967,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 57,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Program.cs",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Program.cs",
@@ -796,7 +979,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 58,
               "Title": "NavMenu.razor",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\Components\\Layout\\NavMenu.razor",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\Components\\Layout\\NavMenu.razor",
@@ -808,7 +991,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 59,
               "Title": "DALClass.cs",
               "DocumentMoniker": "D:\\FinalYearProject\\.NET\\HomeSphere\\DALLibrary\\DALClass.cs",
               "RelativeDocumentMoniker": "..\\FinalYearProject\\.NET\\HomeSphere\\DALLibrary\\DALClass.cs",
@@ -820,7 +1003,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 60,
               "Title": "RegisterModel.cs",
               "DocumentMoniker": "D:\\Caraeho\\ClassLibraryModel\\RegisterModel.cs",
               "RelativeDocumentMoniker": "ClassLibraryModel\\RegisterModel.cs",
@@ -832,7 +1015,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 61,
               "Title": "Register.Razor.cs",
               "DocumentMoniker": "D:\\FinalYearProject\\.NET\\HomeSphere\\FrontEndLoginSignUp\\Components\\Pages\\Register.Razor.cs",
               "RelativeDocumentMoniker": "..\\FinalYearProject\\.NET\\HomeSphere\\FrontEndLoginSignUp\\Components\\Pages\\Register.Razor.cs",
@@ -844,7 +1027,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 62,
               "Title": "ResidentForm.razor",
               "DocumentMoniker": "D:\\FinalYearProject\\.NET\\HomeSphere\\FrontEndLoginSignUp\\Components\\Pages\\ResidentForm.razor",
               "RelativeDocumentMoniker": "..\\FinalYearProject\\.NET\\HomeSphere\\FrontEndLoginSignUp\\Components\\Pages\\ResidentForm.razor",
@@ -856,7 +1039,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 63,
               "Title": "UserService.cs",
               "DocumentMoniker": "D:\\Caraeho\\FrontEndLoginSignUp\\UserService.cs",
               "RelativeDocumentMoniker": "FrontEndLoginSignUp\\UserService.cs",

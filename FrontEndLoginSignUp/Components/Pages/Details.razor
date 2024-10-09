@@ -1,0 +1,476 @@
+﻿@page "/details/{BID}"
+@inject IHttpClientFactory HttpClientFactory
+@rendermode InteractiveServer
+
+
+
+<div class="container">
+    <div class="row">
+        <!-- Cuisine Section -->
+        <div class="col-md-6 mb-4">
+            <h2 class="text-primary">Cuisines</h2>
+            <ul class="list-group mb-3">
+                @foreach (var cuisine in Cuisines)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>@cuisine.CuisineName</strong> - @cuisine.CuisineDescription
+                        </div>
+                        <div>
+                            <button class="btn btn-warning btn-sm me-2" @onclick="() => EditCuisine(cuisine)">Edit</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteCuisine(cuisine.CuisineID)">Delete</button>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="card p-3">
+                <h5>Add or Edit Cuisine</h5>
+                <input type="text" placeholder="Cuisine Name" @bind="NewCuisineName" class="form-control mb-2" />
+                <textarea placeholder="Cuisine Description" @bind="NewCuisineDescription" class="form-control mb-2"></textarea>
+                <button class="btn btn-primary" @onclick="SaveCuisine">Save Cuisine</button>
+            </div>
+        </div>
+
+        <!-- Ambiance Section -->
+        <div class="col-md-6 mb-4">
+            <h2 class="text-primary">Ambiances</h2>
+            <ul class="list-group mb-3">
+                @foreach (var ambiance in Ambiances)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>@ambiance.AmbianceName</strong> - @ambiance.AmbianceDescription
+                        </div>
+                        <div>
+                            <button class="btn btn-warning btn-sm me-2" @onclick="() => EditAmbiance(ambiance)">Edit</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteAmbiance(ambiance.AmbianceID)">Delete</button>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="card p-3">
+                <h5>Add or Edit Ambiance</h5>
+                <input type="text" placeholder="Ambiance Name" @bind="NewAmbianceName" class="form-control mb-2" />
+                <textarea placeholder="Ambiance Description" @bind="NewAmbianceDescription" class="form-control mb-2"></textarea>
+                <button class="btn btn-primary" @onclick="SaveAmbiance">Save Ambiance</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Seating Section -->
+        <div class="col-md-6 mb-4">
+            <h2 class="text-primary">Seatings</h2>
+            <ul class="list-group mb-3">
+                @foreach (var seating in Seatings)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>@seating.SeatingType</strong>
+                        </div>
+                        <div>
+                            <button class="btn btn-warning btn-sm me-2" @onclick="() => EditSeating(seating)">Edit</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteSeating(seating.SeatingID)">Delete</button>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="card p-3">
+                <h5>Add or Edit Seating</h5>
+                <input type="text" placeholder="Seating Type" @bind="NewSeatingType" class="form-control mb-2" />
+                <button class="btn btn-primary" @onclick="SaveSeating">Save Seating</button>
+            </div>
+        </div>
+
+        <!-- Event Section -->
+        <div class="col-md-6 mb-4">
+            <h2 class="text-primary">Events</h2>
+            <ul class="list-group mb-3">
+                @foreach (var events in Events)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>@events.EventName</strong> - @events.EventDescription
+                        </div>
+                        <div>
+                            <button class="btn btn-warning btn-sm me-2" @onclick="() => EditEvent(events)">Edit</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteEvent(events.EventID)">Delete</button>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="card p-3">
+                <h5>Add or Edit Event</h5>
+                <input type="text" placeholder="Event Name" @bind="NewEventName" class="form-control mb-2" />
+                <textarea placeholder="Event Description" @bind="NewEventDescription" class="form-control mb-2"></textarea>
+                <button class="btn btn-primary" @onclick="SaveEvent">Save Event</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- FoodType Section -->
+        <div class="col-md-12 mb-4">
+            <h2 class="text-primary">FoodTypes</h2>
+            <ul class="list-group mb-3">
+                @foreach (var foodType in FoodTypes)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>@foodType.FoodTypeName</strong> - @foodType.FoodTypeDescription
+                        </div>
+                        <div>
+                            <button class="btn btn-warning btn-sm me-2" @onclick="() => EditFoodType(foodType)">Edit</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteFoodType(foodType.FoodTypeID)">Delete</button>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="card p-3">
+                <h5>Add or Edit FoodType</h5>
+                <input type="text" placeholder="FoodType Name" @bind="NewFoodTypeName" class="form-control mb-2" />
+                <textarea placeholder="FoodType Description" @bind="NewFoodTypeDescription" class="form-control mb-2"></textarea>
+                <button class="btn btn-primary" @onclick="SaveFoodType">Save FoodType</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string BID { get; set; }
+
+    // Lists to store data
+    private List<CuisineModel> Cuisines = new();
+    private List<AmbianceModel> Ambiances = new();
+    private List<SeatingModel> Seatings = new();
+    private List<EventModel> Events = new ();
+    private List<FoodTypeModel> FoodTypes = new();
+
+    // Form data for adding or updating
+    private string NewCuisineName, NewCuisineDescription, CuisineIDToUpdate;
+    private string NewAmbianceName, NewAmbianceDescription, AmbianceIDToUpdate;
+    private string NewSeatingType, SeatingIDToUpdate;
+    private string NewEventName, NewEventDescription, EventIDToUpdate;
+    private string NewFoodTypeName, NewFoodTypeDescription, FoodTypeIDToUpdate;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAllData();
+    }
+
+    private async Task LoadAllData()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+
+        // Load Cuisines
+        var cuisineResponse = await client.GetAsync($"api/Cuisine/{BID}");
+        if (cuisineResponse.IsSuccessStatusCode)
+        {
+            Cuisines = await cuisineResponse.Content.ReadFromJsonAsync<List<CuisineModel>>();
+        }
+
+        // Load Ambiances
+        var ambianceResponse = await client.GetAsync($"api/Ambiance/{BID}");
+        if (ambianceResponse.IsSuccessStatusCode)
+        {
+            Ambiances = await ambianceResponse.Content.ReadFromJsonAsync<List<AmbianceModel>>();
+        }
+
+        // Load Seatings
+        var seatingResponse = await client.GetAsync($"api/Seating/{BID}");
+        if (seatingResponse.IsSuccessStatusCode)
+        {
+            Seatings = await seatingResponse.Content.ReadFromJsonAsync<List<SeatingModel>>();
+        }
+
+        // Load Events
+        var eventResponse = await client.GetAsync($"api/Event/{BID}");
+        if (eventResponse.IsSuccessStatusCode)
+        {
+            Events = await eventResponse.Content.ReadFromJsonAsync<List<EventModel>>();
+        }
+
+        // Load FoodTypes
+        var foodTypeResponse = await client.GetAsync($"api/FoodType/{BID}");
+        if (foodTypeResponse.IsSuccessStatusCode)
+        {
+            FoodTypes = await foodTypeResponse.Content.ReadFromJsonAsync<List<FoodTypeModel>>();
+        }
+    }
+
+    // Save, Edit, and Delete methods for each entity
+    private async Task SaveCuisine()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+
+        var cuisine = new CuisineModel
+            {
+
+                CuisineName = NewCuisineName,
+                CuisineDescription = NewCuisineDescription,
+                BID = BID
+            };
+
+        HttpResponseMessage response;
+        if (string.IsNullOrEmpty(CuisineIDToUpdate))
+        {
+            Guid Id = Guid.NewGuid();
+            cuisine.CuisineID = Id.ToString();
+            response = await client.PostAsJsonAsync($"api/Cuisine", cuisine);
+        }
+        else
+        {
+            cuisine.CuisineID = CuisineIDToUpdate;
+            response = await client.PutAsJsonAsync($"api/Cuisine", cuisine);
+        }
+
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadAllData();
+            ClearCuisineForm();
+        }
+    }
+
+    private void EditCuisine(CuisineModel cuisine)
+    {
+        NewCuisineName = cuisine.CuisineName;
+        NewCuisineDescription = cuisine.CuisineDescription;
+        CuisineIDToUpdate = cuisine.CuisineID;
+    }
+
+    private async Task DeleteCuisine(string cuisineID)
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var response = await client.DeleteAsync($"api/Cuisine/{cuisineID}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadAllData();
+        }
+    }
+
+    private void ClearCuisineForm()
+    {
+        NewCuisineName = string.Empty;
+        NewCuisineDescription = string.Empty;
+        CuisineIDToUpdate = string.Empty;
+    }
+
+    private async Task SaveAmbiance()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var ambiance = new AmbianceModel
+            {
+                AmbianceName = NewAmbianceName,
+                AmbianceDescription = NewAmbianceDescription,
+                BID = BID
+            };
+
+        HttpResponseMessage response;
+        if (string.IsNullOrEmpty(AmbianceIDToUpdate))
+        {
+            Guid Id = Guid.NewGuid();
+            ambiance.AmbianceID = Id.ToString();
+            response = await client.PostAsJsonAsync($"api/Ambiance", ambiance);
+        }
+        else
+        {
+            ambiance.AmbianceID = AmbianceIDToUpdate;
+            response = await client.PutAsJsonAsync($"api/Ambiance", ambiance);
+        }
+
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadAllData();
+            ClearAmbianceForm();
+        }
+    }
+
+    private void EditAmbiance(AmbianceModel ambiance)
+    {
+        NewAmbianceName = ambiance.AmbianceName;
+        NewAmbianceDescription = ambiance.AmbianceDescription;
+        AmbianceIDToUpdate = ambiance.AmbianceID;
+    }
+
+    private async Task DeleteAmbiance(string ambianceID)
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var response = await client.DeleteAsync($"api/Ambiance/{ambianceID}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadAllData();
+        }
+    }
+
+    private void ClearAmbianceForm()
+    {
+        NewAmbianceName = string.Empty;
+        NewAmbianceDescription = string.Empty;
+        AmbianceIDToUpdate = string.Empty;
+    }
+
+    private async Task SaveSeating()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var seating = new SeatingModel
+            {
+                SeatingType = NewSeatingType,
+                BID = BID
+            };
+
+        HttpResponseMessage response;
+        if (string.IsNullOrEmpty(SeatingIDToUpdate))
+        {
+            Guid Id = Guid.NewGuid();
+            seating.SeatingID = Id.ToString();
+            response = await client.PostAsJsonAsync($"api/Seating", seating);
+        }
+        else
+        {
+            seating.SeatingID = SeatingIDToUpdate;
+            response = await client.PutAsJsonAsync($"api/Seating", seating);
+        }
+
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadAllData();
+            ClearSeatingForm();
+        }
+    }
+
+    private void EditSeating(SeatingModel seating)
+    {
+        NewSeatingType = seating.SeatingType;
+        SeatingIDToUpdate = seating.SeatingID;
+    }
+
+    private async Task DeleteSeating(string seatingID)
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var response = await client.DeleteAsync($"api/Seating/{seatingID}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadAllData();
+        }
+    }
+
+    private void ClearSeatingForm()
+    {
+        NewSeatingType = string.Empty;
+        SeatingIDToUpdate = string.Empty;
+    }
+
+    private async Task SaveEvent()
+    {
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var events = new EventModel
+    {
+        EventName = NewEventName,
+        EventDescription = NewEventDescription,
+        BID = BID
+    };
+
+    HttpResponseMessage response;
+    if (string.IsNullOrEmpty(EventIDToUpdate))
+    {
+            Guid Id = Guid.NewGuid();
+            events.EventID = Id.ToString();
+        response = await client.PostAsJsonAsync($"api/Event", events);
+}
+    else
+{
+        events.EventID = EventIDToUpdate;
+    response = await client.PutAsJsonAsync($"api/Event", events);
+}
+
+if (response.IsSuccessStatusCode)
+{
+    await LoadAllData();
+    ClearEventForm();
+}
+    }
+
+    private void EditEvent(EventModel events)
+{
+    NewEventName = events.EventName;
+    NewEventDescription = events.EventDescription;
+    EventIDToUpdate = events.EventID;
+}
+
+private async Task DeleteEvent(string eventID)
+{
+    var client = HttpClientFactory.CreateClient("AuthApi");
+    var response = await client.DeleteAsync($"api/Event/{eventID}");
+
+    if (response.IsSuccessStatusCode)
+    {
+    await LoadAllData();
+    }
+}
+
+private void ClearEventForm()
+{
+    NewEventName = string.Empty;
+    NewEventDescription = string.Empty;
+    EventIDToUpdate = string.Empty;
+}
+
+private async Task SaveFoodType()
+{
+    var client = HttpClientFactory.CreateClient("AuthApi");
+    var foodType = new FoodTypeModel
+    {
+        FoodTypeName = NewFoodTypeName,
+        FoodTypeDescription = NewFoodTypeDescription,
+        BID = BID
+    };
+
+    HttpResponseMessage response;
+    if (string.IsNullOrEmpty(FoodTypeIDToUpdate))
+    {
+            Guid Id = Guid.NewGuid();
+            foodType.FoodTypeID = Id.ToString();
+    response = await client.PostAsJsonAsync($"api/FoodType", foodType);
+    }
+    else
+    {
+    foodType.FoodTypeID = FoodTypeIDToUpdate;
+    response = await client.PutAsJsonAsync($"api/FoodType", foodType);
+    }
+
+    if (response.IsSuccessStatusCode)
+    {
+    await LoadAllData();
+    ClearFoodTypeForm();
+    }
+}
+
+private void EditFoodType(FoodTypeModel foodType)
+{
+    NewFoodTypeName = foodType.FoodTypeName;
+    NewFoodTypeDescription = foodType.FoodTypeDescription;
+    FoodTypeIDToUpdate = foodType.FoodTypeID;
+}
+
+private async Task DeleteFoodType(string foodTypeID)
+{
+    var client = HttpClientFactory.CreateClient("AuthApi");
+    var response = await client.DeleteAsync($"api/FoodType/{foodTypeID}");
+
+    if (response.IsSuccessStatusCode)
+    {
+    await LoadAllData();
+    }
+}
+
+private void ClearFoodTypeForm()
+{
+    NewFoodTypeName = string.Empty;
+    NewFoodTypeDescription = string.Empty;
+    FoodTypeIDToUpdate = string.Empty;
+}
+}

@@ -46,6 +46,7 @@
                                     <button class="btn btn-danger btn-sm" @onclick="() => DeleteBranch(branch.BID)">Delete</button>
                                 }
                                              <button class="btn btn-warning btn-sm" @onclick="() => AddMenu(branch.BID)">Menu</button>
+                                <button class="btn btn-danger btn-sm" @onclick="() => Details(branch.BID)">Details</button>
                             </td>
                                     </tr>
                     }
@@ -163,6 +164,11 @@ else
     private void AddMenu(string BID)
     {
         Navigation.NavigateTo($"/category/{BID}");
+    }
+
+    private void Details(string BID)
+    {
+        Navigation.NavigateTo($"/details/{BID}");
     }
 
     private void EditBranch(BranchModel branch)

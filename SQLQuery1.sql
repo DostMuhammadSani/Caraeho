@@ -464,3 +464,230 @@ BEGIN
     WHERE Menu_ID = @Menu_ID;
 END;
 
+
+Create Table Cuisine(
+CuisineID varchar(50) Primary Key,
+CuisineName varchar(50),
+CuisineDescription varchar(1000),
+BID varchar(50),
+FOREIGN KEY (BID) REFERENCES Branch(BID)
+On Delete Cascade
+
+)
+
+Create Table Ambiance(
+AmbianceID varchar(50) Primary Key,
+AmbianceName varchar(50),
+AmbianceDescription varchar(1000),
+BID varchar(50),
+FOREIGN KEY (BID) REFERENCES Branch(BID)
+On Delete Cascade
+
+)
+
+Create Table Seating(
+SeatingID varchar(50) Primary Key,
+SeatingType varchar(50),
+BID varchar(50),
+FOREIGN KEY (BID) REFERENCES Branch(BID)
+On Delete Cascade
+
+)
+
+Create Table Event(
+EventID varchar(50)Primary Key,
+EventName varchar(50),
+EventDescription varchar(1000),
+BID varchar(50),
+FOREIGN KEY (BID) REFERENCES Branch(BID)
+On Delete Cascade
+
+)
+
+Create Table FoodType(
+FoodTypeID varchar(50) Primary Key,
+FoodTypeName varchar(50),
+FoodTypeDescription varchar(1000),
+BID varchar(50),
+FOREIGN KEY (BID) REFERENCES Branch(BID)
+On Delete Cascade
+
+)
+
+
+Create Proc CreateCuisine
+@CuisineID varchar(50),
+@CuisineName varchar(50),
+@CuisineDescription varchar(1000),
+@BID varchar(50)
+As Begin
+Insert into Cuisine values (@CuisineID,@CuisineName,@CuisineDescription,@BID)
+End
+
+Create Proc GetCuisine
+@BID varchar(50)
+As Begin
+Select * from Cuisine where BID=@BID;
+End
+
+Create Proc UpdateCuisine
+@CuisineID varchar(50),
+@CuisineName varchar(50),
+@CuisineDescription varchar(1000)
+As Begin
+Update Cuisine set CuisineName=@CuisineName,CuisineDescription=@CuisineDescription where CuisineID=@CuisineID;
+End
+
+Create Proc DeleteCuisine
+@CuisineID varchar(50)
+As Begin
+ DELETE FROM Cuisine
+    WHERE CuisineID = @CuisineID;
+	End
+
+	-- Create Ambiance
+Create Proc CreateAmbiance
+@AmbianceID varchar(50),
+@AmbianceName varchar(50),
+@AmbianceDescription varchar(1000),
+@BID varchar(50)
+As 
+Begin
+    Insert into Ambiance values (@AmbianceID, @AmbianceName, @AmbianceDescription, @BID);
+End
+
+-- Get Ambiance by Branch ID
+Create Proc GetAmbiance
+@BID varchar(50)
+As 
+Begin
+    Select * from Ambiance where BID = @BID;
+End
+
+-- Update Ambiance
+Create Proc UpdateAmbiance
+@AmbianceID varchar(50),
+@AmbianceName varchar(50),
+@AmbianceDescription varchar(1000)
+As 
+Begin
+    Update Ambiance set AmbianceName = @AmbianceName, AmbianceDescription = @AmbianceDescription where AmbianceID = @AmbianceID;
+End
+
+-- Delete Ambiance
+Create Proc DeleteAmbiance
+@AmbianceID varchar(50)
+As 
+Begin
+    Delete from Ambiance where AmbianceID = @AmbianceID;
+End
+
+-- Create Seating
+Create Proc CreateSeating
+@SeatingID varchar(50),
+@SeatingType varchar(50),
+@BID varchar(50)
+As 
+Begin
+    Insert into Seating values (@SeatingID, @SeatingType, @BID);
+End
+
+-- Get Seating by Branch ID
+Create Proc GetSeating
+@BID varchar(50)
+As 
+Begin
+    Select * from Seating where BID = @BID;
+End
+
+-- Update Seating
+Create Proc UpdateSeating
+@SeatingID varchar(50),
+@SeatingType varchar(50)
+As 
+Begin
+    Update Seating set SeatingType = @SeatingType where SeatingID = @SeatingID;
+End
+
+-- Delete Seating
+Create Proc DeleteSeating
+@SeatingID varchar(50)
+As 
+Begin
+    Delete from Seating where SeatingID = @SeatingID;
+End
+
+-- Create Event
+Create Proc CreateEvent
+@EventID varchar(50),
+@EventName varchar(50),
+@EventDescription varchar(1000),
+@BID varchar(50)
+As 
+Begin
+    Insert into Event values (@EventID, @EventName, @EventDescription, @BID);
+End
+
+-- Get Event by Branch ID
+Create Proc GetEvent
+@BID varchar(50)
+As 
+Begin
+    Select * from Event where BID = @BID;
+End
+
+-- Update Event
+Create Proc UpdateEvent
+@EventID varchar(50),
+@EventName varchar(50),
+@EventDescription varchar(1000)
+As 
+Begin
+    Update Event set EventName = @EventName, EventDescription = @EventDescription where EventID = @EventID;
+End
+
+-- Delete Event
+Create Proc DeleteEvent
+@EventID varchar(50)
+As 
+Begin
+    Delete from Event where EventID = @EventID;
+End
+
+-- Create FoodType
+Create Proc CreateFoodType
+@FoodTypeID varchar(50),
+@FoodTypeName varchar(50),
+@FoodTypeDescription varchar(1000),
+@BID varchar(50)
+As 
+Begin
+    Insert into FoodType values (@FoodTypeID, @FoodTypeName, @FoodTypeDescription, @BID);
+End
+
+-- Get FoodType by Branch ID
+Create Proc GetFoodType
+@BID varchar(50)
+As 
+Begin
+    Select * from FoodType where BID = @BID;
+End
+
+-- Update FoodType
+Create Proc UpdateFoodType
+@FoodTypeID varchar(50),
+@FoodTypeName varchar(50),
+@FoodTypeDescription varchar(1000)
+As 
+Begin
+    Update FoodType set FoodTypeName = @FoodTypeName, FoodTypeDescription = @FoodTypeDescription where FoodTypeID = @FoodTypeID;
+End
+
+-- Delete FoodType
+Create Proc DeleteFoodType
+@FoodTypeID varchar(50)
+As 
+Begin
+    Delete from FoodType where FoodTypeID = @FoodTypeID;
+End
+
